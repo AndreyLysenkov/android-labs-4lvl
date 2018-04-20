@@ -80,16 +80,27 @@ public class ActivityFigure {
 
 
     public void setPosition(ImageView view) {
-        // pick up at
-        // https://stackoverflow.com/questions/4472429/change-the-right-margin-of-a-view-programmatically
-        // https://developer.android.com/reference/android/view/ViewGroup.MarginLayoutParams.html
-        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         switch (this.Position) {
             case CENTER:
-                params.setMargins(0, 0, 0, 0);
+                view.setX(0);
+                view.setY(0);
                 break;
-
+            case LEFT:
+                view.setX(-1);
+                view.setY(0);
+                break;
+            case RIGHT:
+                view.setX(1);
+                view.setY(0);
+                break;
+            case BOTTOM:
+                view.setX(0);
+                view.setY(1);
+                break;
+            case TOP:
+                view.setX(0);
+                view.setY(-1);
+                break;
         }
-        view.setLayoutParams(params);
     }
 }
