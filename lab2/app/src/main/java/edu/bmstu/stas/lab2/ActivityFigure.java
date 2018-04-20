@@ -3,6 +3,7 @@ package edu.bmstu.stas.lab2;
 import android.app.Activity;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class ActivityFigure {
@@ -78,28 +79,30 @@ public class ActivityFigure {
 
 
     public void setFigurePosition(ImageView view) {
+        // pick up at
+        // https://stackoverflow.com/questions/4472429/change-the-right-margin-of-a-view-programmatically
+        // https://developer.android.com/reference/android/view/ViewGroup.MarginLayoutParams.html
+        // TODO
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         switch (this.Position) {
             case CENTER:
-                view.setX(0);
-                view.setY(0);
-                break;
-            case LEFT:
-                view.setX(-1);
-                view.setY(0);
-                break;
-            case RIGHT:
-                view.setX(1);
-                view.setY(0);
+                params.setMargins(-1, -1, -1, -1);
                 break;
             case BOTTOM:
-                view.setX(0);
-                view.setY(1);
+                params.setMargins(-1, -1, -1, 0);
                 break;
             case TOP:
-                view.setX(0);
-                view.setY(-1);
+                params.setMargins(-1, 0, -1, -1);
+                break;
+            case LEFT:
+                params.setMargins(0, -1, -1, -1);
+                break;
+            case RIGHT:
+                params.setMargins(-1, -1, 0, -1);
                 break;
         }
+        view.setLayoutParams(params);
+        view.requestLayout();
     }
 
     public void applyOn(Activity activity, ImageView view) {
