@@ -1,7 +1,8 @@
 package edu.bmstu.stas.lab2;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
 public class ActivityFigure {
@@ -16,7 +17,7 @@ public class ActivityFigure {
     public enum eForm {
         CIRCLE,
         SQUARE,
-        TRIANGLE
+        LINE
     }
 
     public enum ePosition {
@@ -55,6 +56,31 @@ public class ActivityFigure {
                 color = android.graphics.Color.RED;
                 break;
         }
-        view.setColorFilter(color);
+        view.setBackgroundColor(color);
+    }
+
+
+    public void setFigureForm(ImageView view, Activity activity) {
+        int form = R.drawable.square;
+        switch (this.Color) {
+            case BLACK:
+                form = android.graphics.Color.BLACK;
+                break;
+            case GRAY:
+                form = android.graphics.Color.GRAY;
+                break;
+            case BLUE:
+                form = android.graphics.Color.BLUE;
+                break;
+            case RED:
+                form = android.graphics.Color.RED;
+                break;
+        }
+        view.setImageDrawable(ContextCompat.getDrawable(activity, form));
+    }
+
+
+    public void setPosition(ImageView view) {
+
     }
 }

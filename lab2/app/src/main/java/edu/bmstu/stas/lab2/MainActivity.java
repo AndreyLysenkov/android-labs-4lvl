@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 mFigure.Form = ActivityFigure.eForm.SQUARE;
                 drawFigure();
                 return true;
-            case R.id.menu_form_triangle:
-                mFigure.Form = ActivityFigure.eForm.TRIANGLE;
+            case R.id.menu_form_line:
+                mFigure.Form = ActivityFigure.eForm.LINE;
                 drawFigure();
                 return true;
             case R.id.menu_position_center:
