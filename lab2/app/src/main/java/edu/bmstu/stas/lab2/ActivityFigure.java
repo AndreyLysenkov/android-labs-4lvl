@@ -62,7 +62,7 @@ public class ActivityFigure {
     }
 
 
-    public void setFigureForm(ImageView view, Activity activity) {
+    public void setFigureForm(Activity activity, ImageView view) {
         int form = R.drawable.square;
         switch (this.Form) {
             case SQUARE:
@@ -79,7 +79,7 @@ public class ActivityFigure {
     }
 
 
-    public void setPosition(ImageView view) {
+    public void setFigurePosition(ImageView view) {
         switch (this.Position) {
             case CENTER:
                 view.setX(0);
@@ -102,5 +102,12 @@ public class ActivityFigure {
                 view.setY(-1);
                 break;
         }
+    }
+
+    public void applyOn(Activity activity, ImageView view) {
+        this.setFigureColor(view);
+        this.setFigureForm(activity, view);
+        this.setFigurePosition(view);
+        view.setVisibility(View.VISIBLE);
     }
 }

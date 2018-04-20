@@ -6,11 +6,14 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityFigure mFigure = new ActivityFigure();
+    ImageView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_selection, menu);
 
+        this.mView = findViewById(R.id.figure);
         return true;
     }
 
@@ -75,13 +79,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onScreenClear(MenuItem item) {
-        // TODO;
-        Log.d("button", "pressed clear");
+        mView.setVisibility(View.INVISIBLE);
     }
 
     public  void drawFigure() {
-        // TODO;
-        Log.d("button", "draws figure");
+        this.mFigure.applyOn(this, mView);
     }
 
 }
