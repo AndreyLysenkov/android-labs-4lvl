@@ -2,7 +2,6 @@ package edu.bmstu.stas.lab2;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 mFigure.Form = ActivityFigure.eForm.SQUARE;
                 drawFigure();
                 return true;
-            case R.id.menu_form_line:
-                mFigure.Form = ActivityFigure.eForm.LINE;
+            case R.id.menu_form_rectangle:
+                mFigure.Form = ActivityFigure.eForm.RECTANGLE;
                 drawFigure();
                 return true;
             case R.id.menu_position_center:
@@ -86,4 +85,7 @@ public class MainActivity extends AppCompatActivity {
         this.mFigure.applyOn(this, mView);
     }
 
+    public void onDrawFigure(MenuItem item) {
+        this.drawFigure();
+    }
 }

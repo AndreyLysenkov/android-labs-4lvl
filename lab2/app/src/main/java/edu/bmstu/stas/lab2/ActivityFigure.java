@@ -1,10 +1,8 @@
 package edu.bmstu.stas.lab2;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class ActivityFigure {
@@ -19,7 +17,7 @@ public class ActivityFigure {
     public enum eForm {
         CIRCLE,
         SQUARE,
-        LINE
+        RECTANGLE
     }
 
     public enum ePosition {
@@ -58,7 +56,7 @@ public class ActivityFigure {
                 color = android.graphics.Color.RED;
                 break;
         }
-        view.setBackgroundColor(color);
+        view.setColorFilter(color);
     }
 
 
@@ -71,8 +69,8 @@ public class ActivityFigure {
             case CIRCLE:
                 form = R.drawable.circle;
                 break;
-            case LINE:
-                form = R.drawable.line;
+            case RECTANGLE:
+                form = R.drawable.rectangle;
                 break;
         }
         view.setImageDrawable(ContextCompat.getDrawable(activity, form));

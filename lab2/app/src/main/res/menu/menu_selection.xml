@@ -22,8 +22,8 @@
                 android:title="@string/menu_form_square_label" />
             <item android:id="@+id/menu_form_circle"
                 android:title="@string/menu_form_circle_label" />
-            <item android:id="@+id/menu_form_line"
-                android:title="@string/menu_form_line_label" />
+            <item android:id="@+id/menu_form_rectangle"
+                android:title="@string/menu_form_rectangle_label" />
         </menu>
     </item>
 
@@ -42,6 +42,10 @@
                 android:title="@string/menu_position_right_label" />
         </menu>
     </item>
+
+    <item android:id="@+id/menu_action_draw"
+        android:title="@string/menu_action_draw_label_text"
+        android:onClick="onDrawFigure" />
 
     <item android:id="@+id/menu_action_clear"
         android:title="@string/menu_action_clear_label_text"

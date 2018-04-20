@@ -9,11 +9,12 @@
     <string name="menu_form_label">форма</string>
     <string name="menu_form_square_label">квадрат</string>
     <string name="menu_form_circle_label">круг</string>
-    <string name="menu_form_line_label">линия</string>
+    <string name="menu_form_rectangle_label">прямоугольник</string>
     <string name="menu_position_label">позиция</string>
     <string name="menu_position_center_label">по центру</string>
     <string name="menu_position_top_label">вверху</string>
     <string name="menu_position_bottom_label">внизу</string>
     <string name="menu_position_left_label">влево</string>
     <string name="menu_position_right_label">вправо</string>
+    <string name="menu_action_draw_label_text">нарисовать</string>
 </resources>
