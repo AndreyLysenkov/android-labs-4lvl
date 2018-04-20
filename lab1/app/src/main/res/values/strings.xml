@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">lab1</string>
+    <string name="app_name">labaratory work #1</string>
+    <string name="activity_main_textView1_text_content">МОИ ГЛАЗА</string>
+    <string name="activity_main_textView2_text_content">ай, больна</string>
 </resources>
