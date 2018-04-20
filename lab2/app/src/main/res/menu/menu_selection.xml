@@ -1,7 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/new_game"
-        android:title="new_game" />
-    <item android:id="@+id/help"
-        android:title="help" />
+
+    <item android:id="@+id/menu_color"
+        android:title="@string/menu_color_label">
+        <menu>
+            <item android:id="@+id/menu_color_black"
+            android:title="@string/menu_color_black_label" />
+            <item android:id="@+id/menu_color_gray"
+                android:title="@string/menu_color_gray_label" />
+            <item android:id="@+id/menu_color_blue"
+                android:title="@string/menu_color_blue_label" />
+            <item android:id="@+id/menu_color_red"
+                android:title="@string/menu_color_red_label" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/menu_form"
+        android:title="@string/menu_form_label">
+        <menu>
+            <item android:id="@+id/menu_form_square"
+                android:title="@string/menu_form_square_label" />
+            <item android:id="@+id/menu_form_circle"
+                android:title="@string/menu_form_circle_label" />
+            <item android:id="@+id/menu_form_triangle"
+                android:title="@string/menu_form_triangle_label" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/menu_position"
+        android:title="@string/menu_position_label">
+        <menu>
+            <item android:id="@+id/menu_position_center"
+                android:title="@string/menu_position_center_label" />
+            <item android:id="@+id/menu_position_top"
+                android:title="@string/menu_position_top_label" />
+            <item android:id="@+id/menu_position_bottom"
+                android:title="@string/menu_position_bottom_label" />
+            <item android:id="@+id/menu_position_left"
+                android:title="@string/menu_position_left_label" />
+            <item android:id="@+id/menu_position_right"
+                android:title="@string/menu_position_right_label" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/menu_action_clear"
+        android:title="@string/menu_action_clear_label_text" />
 </menu>

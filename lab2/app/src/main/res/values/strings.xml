@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">lab2</string>
+    <string name="menu_color_label">цвет</string>
+    <string name="menu_color_black_label">чёрный</string>
+    <string name="menu_color_gray_label">серый</string>
+    <string name="menu_color_blue_label">голубой</string>
+    <string name="menu_color_red_label">красный</string>
+    <string name="menu_action_clear_label_text">очистить</string>
+    <string name="menu_form_label">форма</string>
+    <string name="menu_form_square_label">квадрат</string>
+    <string name="menu_form_circle_label">круг</string>
+    <string name="menu_form_triangle_label">треугольник</string>
+    <string name="menu_position_label">позиция</string>
+    <string name="menu_position_center_label">по центру</string>
+    <string name="menu_position_top_label">вверху</string>
+    <string name="menu_position_bottom_label">внизу</string>
+    <string name="menu_position_left_label">влево</string>
+    <string name="menu_position_right_label">вправо</string>
 </resources>
