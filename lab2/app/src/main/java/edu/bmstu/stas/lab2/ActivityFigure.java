@@ -3,6 +3,8 @@ package edu.bmstu.stas.lab2;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class ActivityFigure {
@@ -62,18 +64,15 @@ public class ActivityFigure {
 
     public void setFigureForm(ImageView view, Activity activity) {
         int form = R.drawable.square;
-        switch (this.Color) {
-            case BLACK:
-                form = android.graphics.Color.BLACK;
+        switch (this.Form) {
+            case SQUARE:
+                form = R.drawable.square;
                 break;
-            case GRAY:
-                form = android.graphics.Color.GRAY;
+            case CIRCLE:
+                form = R.drawable.circle;
                 break;
-            case BLUE:
-                form = android.graphics.Color.BLUE;
-                break;
-            case RED:
-                form = android.graphics.Color.RED;
+            case LINE:
+                form = R.drawable.line;
                 break;
         }
         view.setImageDrawable(ContextCompat.getDrawable(activity, form));
@@ -81,6 +80,16 @@ public class ActivityFigure {
 
 
     public void setPosition(ImageView view) {
+        // pick up at
+        // https://stackoverflow.com/questions/4472429/change-the-right-margin-of-a-view-programmatically
+        // https://developer.android.com/reference/android/view/ViewGroup.MarginLayoutParams.html
+        ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        switch (this.Position) {
+            case CENTER:
+                params.setMargins(0, 0, 0, 0);
+                break;
 
+        }
+        view.setLayoutParams(params);
     }
 }
