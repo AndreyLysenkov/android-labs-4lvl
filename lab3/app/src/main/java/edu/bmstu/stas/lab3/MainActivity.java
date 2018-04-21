@@ -21,13 +21,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        EditText loginEditText = (EditText) findViewById(R.id.activity_main_login);
-        EditText passwordEditText = (EditText) findViewById(R.id.activity_main_password);
+        EditText textSizeEditText = (EditText) findViewById(R.id.activity_main_textSize_field);
+        int size = Integer.parseInt(textSizeEditText.getText().toString());
+
+        int color = this.color;
+
+        EditText textContentEditText = (EditText) findViewById(R.id.activity_main_textContent);
+        String text = textContentEditText.getText().toString();
 
         Intent intent = new Intent(MainActivity.this, AboutActivity.class);
 
-        intent.putExtra("login", loginEditText.getText().toString());
-        intent.putExtra("password", passwordEditText.getText().toString());
+        intent.putExtra("color", color);
+        intent.putExtra("size", size);
+        intent.putExtra("text", text);
 
         startActivity(intent);
     }
@@ -68,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 if (checked)
                     color = getRandomColor();
                 break;
-
-
         }
     }
 }
