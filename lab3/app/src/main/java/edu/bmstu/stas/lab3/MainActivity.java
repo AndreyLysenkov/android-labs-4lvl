@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
         EditText textContentEditText = (EditText) findViewById(R.id.activity_main_textContent);
         String text = textContentEditText.getText().toString();
 
-        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+        //Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+
+        Intent intent = new Intent();
+        intent.setAction("edu.bmstu.stas.lab3.VIEW_TEXT");
 
         intent.putExtra("color", color);
         intent.putExtra("size", size);

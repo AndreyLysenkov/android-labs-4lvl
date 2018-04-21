@@ -18,6 +18,14 @@
         </activity>
         <activity android:name=".AboutActivity"
             android:label="@string/activity_about_title">
+            <intent-filter>
+                <!-- thnx to
+                https://stackoverflow.com/questions/10921451/start-activity-using-custom-action
+                https://stackoverflow.com/questions/8583658/start-activity-with-action-but-no-category/8584432#8584432
+                -->
+                <action android:name="edu.bmstu.stas.lab3.VIEW_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
     </application>

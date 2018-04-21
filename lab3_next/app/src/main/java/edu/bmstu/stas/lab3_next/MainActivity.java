@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onTextEdit(View view) {
-        Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+        Intent intent = new Intent(MainActivity.this, TextActivity.class);
         startActivityForResult(intent, 1);
 
     }
 
     public void onSizeEdit(View view) {
-        Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+        Intent intent = new Intent(MainActivity.this, SizeActivity.class);
         startActivityForResult(intent, 2);
 
     }
