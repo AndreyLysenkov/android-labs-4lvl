@@ -31,28 +31,28 @@ class DrawView extends View {
         DrawOption.ePosition position = this.option.Position;
 
         if (position == DrawOption.ePosition.CENTER) {
-            result.Y = 200;
-            result.X = 100;
+            result.Y = 800;
+            result.X = 400;
         }
 
         if (position == DrawOption.ePosition.TOP) {
             result.Y = 0;
-            result.X = 100;
+            result.X = 400;
         }
 
         if (position == DrawOption.ePosition.BOTTOM) {
-            result.Y = 400;
-            result.X = 100;
+            result.Y = 1500;
+            result.X = 400;
         }
 
         if (position == DrawOption.ePosition.LEFT) {
-            result.Y = 200;
+            result.Y = 800;
             result.X = 0;
         }
 
         if (position == DrawOption.ePosition.RIGHT) {
-            result.Y = 200;
-            result.X = 200;
+            result.Y = 800;
+            result.X = 800;
         }
 
         return result;
@@ -72,13 +72,13 @@ class DrawView extends View {
 
         switch (this.option.Figure) {
             case CIRCLE:
-                canvas.drawCircle(position.X + 50, position.Y + 50, 100, p);
+                canvas.drawCircle(position.X + 100, position.Y + 100, 100, p);
                 break;
             case SQUARE:
-                canvas.drawRect(position.X, position.Y, position.X + 100, position.Y + 50, p);
+                canvas.drawRect(position.X, position.Y, position.X + 200, position.Y + 200, p);
                 break;
             case RECTANGLE:
-                canvas.drawRect(position.X, position.Y, position.X + 75, position.Y + 75, p);
+                canvas.drawRect(position.X, position.Y, position.X + 150, position.Y + 200, p);
                 break;
         }
     }
