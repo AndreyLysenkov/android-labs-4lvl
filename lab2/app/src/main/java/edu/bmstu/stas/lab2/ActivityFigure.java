@@ -2,6 +2,7 @@ package edu.bmstu.stas.lab2;
 
 import android.app.Activity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -58,11 +59,12 @@ public class ActivityFigure {
                 break;
         }
         view.setColorFilter(color);
+        Log.d("figure", "color set");
     }
 
 
     public void setFigureForm(Activity activity, ImageView view) {
-        int form = R.drawable.square;
+        /*int form = R.drawable.square;
         switch (this.Form) {
             case SQUARE:
                 form = R.drawable.square;
@@ -74,7 +76,8 @@ public class ActivityFigure {
                 form = R.drawable.rectangle;
                 break;
         }
-        view.setImageDrawable(ContextCompat.getDrawable(activity, form));
+        view.setImageDrawable(ContextCompat.getDrawable(activity, form));*/
+        Log.d("figure", "set form");
     }
 
 
@@ -103,6 +106,7 @@ public class ActivityFigure {
         }
         view.setLayoutParams(params);
         view.requestLayout();
+        Log.d("figure", "set position");
     }
 
     public void applyOn(Activity activity, ImageView view) {
@@ -110,5 +114,6 @@ public class ActivityFigure {
         this.setFigureForm(activity, view);
         this.setFigurePosition(view);
         view.setVisibility(View.VISIBLE);
+        Log.d("figure", "drawing");
     }
 }
