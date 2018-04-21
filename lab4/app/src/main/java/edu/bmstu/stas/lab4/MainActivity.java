@@ -135,11 +135,13 @@ public class MainActivity extends AppCompatActivity {
             result.append(this.recordToString(cursor));
         } while (cursor.moveToNext());
 
+        // TODO; change on download user folder
         File cursorFile = new File( getApplicationInfo().dataDir, "query1.txt");
+        Log.i("file", "write in `" + getApplicationInfo().dataDir +"` folder");
         try {
             cursorFile.createNewFile();
             FileOutputStream outputStream = new FileOutputStream(cursorFile, false);
-            outputStream.write(result.toString().getBytes());
+            outputStream.write(result.toString().getBytes(), 0, result.toString().getBytes().length);
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
