@@ -11,73 +11,52 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-// tyhnx http://startandroid.ru/ru/uroki/vse-uroki-spiskom/312-urok-142-risovanie-prostye-figury-tekst.html
+// thnx http://startandroid.ru/ru/uroki/vse-uroki-spiskom/312-urok-142-risovanie-prostye-figury-tekst.html
+// http://startandroid.ru/ru/uroki/vse-uroki-spiskom/322-urok-146-risovanie-canvas-preobrazovanija.html
 public class MainActivity extends AppCompatActivity {
 
     DrawView draw;
+    DrawOption option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        draw = new DrawView(this);
+
+        this.setDraw(new DrawOption(true));
+        this.option = new DrawOption(false);
+    }
+
+    public void setDraw(DrawOption option)
+    {
+        draw = new DrawView(this, option);
         setContentView(draw);
-    }
-
-    enum eFigure {
-        SQUARE,
-        CIRCLE,
-        RECTANGLE
-    }
-
-    public enum ePosition {
-        CENTER,
-        LEFT,
-        RIGHT,
-        TOP,
-        BOTTOM
     }
 
     class DrawView extends View {
 
         Paint p;
         Canvas canvas;
-        eFigure figure;
-        ePosition position;
+        DrawOption option;
 
 
-        public DrawView(Context context) {
+        public DrawView(Context context, DrawOption option) {
             super(context);
             p = new Paint();
-            p.setColor(Color.BLACK);
-            figure = eFigure.CIRCLE;
-            position = ePosition.CENTER;
+            p.setColor(option.Clear ? Color.WHITE : option.Color);
+            this.option = option;
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             this.canvas = canvas;
-        }
 
-        public void Clear() {
+            // clear screen
             this.canvas.drawARGB(255, 255, 255, 255);
-        }
 
+            if (this.option.Clear)
+                return;
 
-        public void setColor(int color) {
-            this.p.setColor(color);
-        }
-
-        public void setFigure(eFigure figure) {
-            this.figure = figure;
-        }
-
-        public  void setPosition(ePosition position) {
-            this.position = position;
-        }
-
-        public void draw() {
-            this.Clear();
-            switch (this.figure) {
+            switch (this.option.Figure) {
                 case CIRCLE:
                     canvas.drawCircle(100, 200, 50, p);
                     break;
@@ -104,43 +83,43 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_color_black:
-                draw.setColor(Color.BLACK);
+                option.Color = Color.BLACK;
                 return true;
             case R.id.menu_color_gray:
-                draw.setColor(Color.GRAY);
+                option.Color = Color.GRAY;
                 return true;
             case R.id.menu_color_blue:
-                draw.setColor(Color.BLUE);
+                option.Color = Color.BLUE;
                 return true;
             case R.id.menu_color_red:
-                draw.setColor(Color.RED);
+                option.Color = Color.RED;
                 return true;
             case R.id.menu_form_circle:
-                draw.setFigure(eFigure.CIRCLE);
+                option.Figure = DrawOption.eFigure.CIRCLE;
                 drawFigure();
                 return true;
             case R.id.menu_form_square:
-                draw.setFigure(eFigure.SQUARE);
+                option.Figure = DrawOption.eFigure.SQUARE;
                 drawFigure();
                 return true;
             case R.id.menu_form_rectangle:
-                draw.setFigure(eFigure.RECTANGLE);
+                option.Figure = DrawOption.eFigure.RECTANGLE;
                 drawFigure();
                 return true;
             case R.id.menu_position_center:
-                draw.setPosition(ePosition.CENTER);
+                option.Position = DrawOption.ePosition.CENTER;
                 return true;
             case R.id.menu_position_left:
-                draw.setPosition(ePosition.LEFT);
+                option.Position = DrawOption.ePosition.LEFT;
                 return true;
             case R.id.menu_position_right:
-                draw.setPosition(ePosition.RIGHT);
+                option.Position = DrawOption.ePosition.RIGHT;
                 return true;
             case R.id.menu_position_bottom:
-                draw.setPosition(ePosition.BOTTOM);
+                option.Position = DrawOption.ePosition.BOTTOM;
                 return true;
             case R.id.menu_position_top:
-                draw.setPosition(ePosition.TOP);
+                option.Position = DrawOption.ePosition.TOP;
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -148,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onScreenClear(MenuItem item) {
-        draw.Clear();
+        this.setDraw(new DrawOption(true));
     }
 
     public  void drawFigure() {
-        draw.draw();
+        this.setDraw(this.option);
     }
 
     public void onDrawFigure(MenuItem item) {
