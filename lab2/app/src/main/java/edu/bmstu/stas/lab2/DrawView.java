@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 
 class DrawView extends View {
@@ -55,6 +56,8 @@ class DrawView extends View {
             result.X = 800;
         }
 
+        Log.d("figure", "calculated position as X:" + Integer.toString(result.X) +
+            " and Y:" + Integer.toString(result.Y));
         return result;
     }
 
@@ -64,20 +67,25 @@ class DrawView extends View {
 
         // clear screen
         this.canvas.drawARGB(255, 255, 255, 255);
-
-        Position position = CalculatePosition();
+        Log.d("canvas", "canvas cleared");
 
         if (this.option.Clear)
             return;
 
+        Position position = CalculatePosition();
+
+        Log.d("figure", "calculating figure and output it");
         switch (this.option.Figure) {
             case CIRCLE:
+                Log.d("canvas", "draw circle");
                 canvas.drawCircle(position.X + 100, position.Y + 100, 100, p);
                 break;
             case SQUARE:
+                Log.d("canvas", "draw rectangle");
                 canvas.drawRect(position.X, position.Y, position.X + 200, position.Y + 200, p);
                 break;
             case RECTANGLE:
+                Log.d("canvas", "draw square");
                 canvas.drawRect(position.X, position.Y, position.X + 150, position.Y + 200, p);
                 break;
         }

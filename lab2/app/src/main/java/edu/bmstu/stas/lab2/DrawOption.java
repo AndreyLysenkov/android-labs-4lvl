@@ -1,7 +1,5 @@
 package edu.bmstu.stas.lab2;
 
-import android.graphics.Color;
-
 public class DrawOption {
 
 

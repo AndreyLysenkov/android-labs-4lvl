@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menu_color"
-        android:title="@string/menu_color_label">
+    <!-- google doesn't want icon to show up
+        https://android-developers.googleblog.com/2012/01/say-goodbye-to-menu-button.html -->
+
+    <item
+        android:id="@+id/menu_color"
+        android:icon="@drawable/ic_menu_color"
+        android:title="@string/menu_action_color_label_text">
         <menu>
-            <item android:id="@+id/menu_color_black"
-            android:title="@string/menu_color_black_label" />
-            <item android:id="@+id/menu_color_gray"
+            <item
+                android:id="@+id/menu_color_black"
+                android:title="@string/menu_color_black_label" />
+            <item
+                android:id="@+id/menu_color_gray"
                 android:title="@string/menu_color_gray_label" />
-            <item android:id="@+id/menu_color_blue"
+            <item
+                android:id="@+id/menu_color_blue"
                 android:title="@string/menu_color_blue_label" />
-            <item android:id="@+id/menu_color_red"
+            <item
+                android:id="@+id/menu_color_red"
                 android:title="@string/menu_color_red_label" />
         </menu>
     </item>
@@ -43,11 +52,15 @@
         </menu>
     </item>
 
-    <item android:id="@+id/menu_action_draw"
-        android:title="@string/menu_action_draw_label_text"
-        android:onClick="onDrawFigure" />
+    <item
+        android:id="@+id/menu_action_draw"
+        android:icon="@drawable/ic_menu_draw"
+        android:onClick="onDrawFigure"
+        android:title="@string/menu_action_draw_label_text" />
 
-    <item android:id="@+id/menu_action_clear"
-        android:title="@string/menu_action_clear_label_text"
-        android:onClick="onScreenClear" />
+    <item
+        android:id="@+id/menu_action_clear"
+        android:icon="@drawable/ic_menu_clear"
+        android:onClick="onScreenClear"
+        android:title="@string/menu_action_clear_label_text" />
 </menu>

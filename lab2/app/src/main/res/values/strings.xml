@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">lab2</string>
-    <string name="menu_color_label">цвет</string>
     <string name="menu_color_black_label">чёрный</string>
     <string name="menu_color_gray_label">серый</string>
     <string name="menu_color_blue_label">голубой</string>
@@ -17,4 +16,17 @@
     <string name="menu_position_left_label">влево</string>
     <string name="menu_position_right_label">вправо</string>
     <string name="menu_action_draw_label_text">нарисовать</string>
+    <string name="menu_action_color_black_hint">set black color</string>
+    <string name="menu_action_color_gray_hint">set gray color</string>
+    <string name="menu_action_color_blue_hint">set blue color</string>
+    <string name="menu_action_color_red_hint">set red color</string>
+    <string name="menu_action_figure_circle_hint">set circle</string>
+    <string name="menu_action_figure_square_hint">set square</string>
+    <string name="menu_action_figure_rectangle_hint">set rectangle</string>
+    <string name="menu_action_position_center_hint">set center position</string>
+    <string name="menu_action_position_left_hint">set left position</string>
+    <string name="menu_action_position_right_hint">set right position</string>
+    <string name="menu_action_position_bottom_hint">set bottom position</string>
+    <string name="menu_action_position_top_hint">set top position</string>
+    <string name="menu_action_color_label_text">цвет</string>
 </resources>
