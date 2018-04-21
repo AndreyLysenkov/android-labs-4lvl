@@ -3,4 +3,11 @@
     <string name="activity_main_button_createDatabase_example_label">создать бд с example данными</string>
     <string name="database_message_onCreateExample">example бд создана и открыта</string>
     <string name="database_message_onCreateExample_fail">были ошибки создания бд</string>
+    <string name="activity_query_button_1_label">запрос 1</string>
+    <string name="activity_query_button_2_label">запрос 2</string>
+    <string name="activity_query_button_3_label">запрос 3</string>
+    <string name="activity_query_button_4_label">запрос 4</string>
+    <string name="activity_query_button_5_label">запрос 5</string>
+    <string name="activity_query_button_6_label">запрос 6</string>
+    <string name="activity_query_button_7_label">запрос 7</string>
 </resources>

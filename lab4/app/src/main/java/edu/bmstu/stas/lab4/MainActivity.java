@@ -2,6 +2,7 @@ package edu.bmstu.stas.lab4;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.onCreateAndAddExampleDatabase();
     }
 
     private void initializeDatabase() {
@@ -77,19 +80,73 @@ public class MainActivity extends AppCompatActivity {
         return success;
     }
 
-    private void openQueryActivity() {
-        Intent intent = new Intent(MainActivity.this, QueryActivity.class);
-        startActivity(intent);
-    }
-
-    public void onCreateAndAddExampleDatabase(View view) {
+    public void onCreateAndAddExampleDatabase() {
         this.initializeDatabase();
         boolean success = this.addExampleData();
         if (success)
             Toast.makeText(this, R.string.database_message_onCreateExample, Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, R.string.database_message_onCreateExample_fail, Toast.LENGTH_SHORT).show();
-        this.openQueryActivity();
     }
 
+    public String recordToString(Cursor cursor) {
+        StringBuilder result = new StringBuilder();
+        result.append("record #" + Integer.toString(cursor.getInt(cursor.getColumnIndex("id"))));
+        result.append("\n");
+        result.append("type: " + cursor.getString(cursor.getColumnIndex("type")));
+        result.append("manufacture: " + cursor.getString(cursor.getColumnIndex("manufacture")));
+        result.append("model: " + cursor.getString(cursor.getColumnIndex("model")));
+        result.append("baggage" + Integer.toString(cursor.getInt(cursor.getColumnIndex("baggage"))));
+        //result.append("abs" + Integer.toString(cursor.getInt(cursor.getColumnIndex("abs"))));
+        result.append("safety" + Integer.toString(cursor.getInt(cursor.getColumnIndex("safety"))));
+        result.append("consumption" + Float.toString(cursor.getFloat(cursor.getColumnIndex("consumption"))));
+
+        return result.toString();
+    }
+
+    public void logCursor(Cursor cursor) {
+        while (cursor.moveToNext()) {
+            Log.i("database/cursor", this.recordToString(cursor));
+        }
+        cursor.moveToFirst();
+    }
+
+    public void onQuery(View view) {
+        /*String queryString =
+                "SELECT column1, (SELECT max(column1) FROM table1) AS max FROM table1 " +
+                        "WHERE column1 = ? OR column1 = ? ORDER BY column1";String queryString =
+                "SELECT column1, (SELECT max(column1) FROM table1) AS max FROM table1 " +
+                        "WHERE column1 = ? OR column1 = ? ORDER BY column1";
+
+                        sqLiteDatabase.rawQuery(queryString, whereArgs);
+                        */
+
+        String query = "SELECT * FROM cars ORDER BY safety";
+        Cursor result = this.database.rawQuery(query, null);
+        result.moveToFirst();
+        this.logCursor(result);
+
+
+
+        /*
+        * public void onCursorClick(View v) {
+	String query = "SELECT " + CatsDataBase._ID + ", "
+			+ CatsDataBase.CATNAME + " FROM " + CatsDataBase.TABLE_NAME;
+	Cursor catCursor = sqdb.rawQuery(query, null);
+	catCursor.moveToFirst(); // переходим на первую строку
+	// извлекаем данные из курсора
+	int item_id = catCursor
+			.getInt(catCursor.getColumnIndex(CatsDataBase._ID));
+	String item_content = catCursor.getString(catCursor
+			.getColumnIndex(CatsDataBase.CATNAME));
+	catCursor.close();
+
+	txtData.setText("id: " + item_id + " Имя кота: " + item_content);
 }
+        * */
+
+                }
+
+
+                // TODO;
+                }
