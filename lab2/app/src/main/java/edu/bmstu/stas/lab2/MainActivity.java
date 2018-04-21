@@ -4,25 +4,23 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 // tyhnx http://startandroid.ru/ru/uroki/vse-uroki-spiskom/312-urok-142-risovanie-prostye-figury-tekst.html
 public class MainActivity extends AppCompatActivity {
 
-    ActivityFigure mFigure = new ActivityFigure();
-    ImageView mView;
+    DrawView draw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new DrawView(this));
+        draw = new DrawView(this);
+        setContentView(draw);
     }
 
     enum eFigure {
@@ -45,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         Canvas canvas;
         eFigure figure;
         ePosition position;
-        Rect rect;
 
 
         public DrawView(Context context) {
@@ -54,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             p.setColor(Color.BLACK);
             figure = eFigure.CIRCLE;
             position = ePosition.CENTER;
-            rect = 
         }
 
         @Override
@@ -94,40 +90,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
-
-
-        /*
-
-        // заливка канвы цветом
-            canvas.drawARGB(80, 102, 204, 255);
-
-            // настройка кисти
-            // красный цвет
-            p.setColor(Color.RED);
-            // толщина линии = 10
-            p.setStrokeWidth(10);
-
-            // рисуем точку (50,50)
-            canvas.drawPoint(50, 50, p);
-
-            // рисуем линию от (100,100) до (500,50)
-            canvas.drawLine(100,100,500,50,p);
-
-            // рисуем круг с центром в (100,200), радиус = 50
-            canvas.drawCircle(100, 200, 50, p);
-
-            // рисуем прямоугольник
-            // левая верхняя точка (200,150), нижняя правая (400,200)
-            canvas.drawRect(200, 150, 400, 200, p);
-
-            // настройка объекта Rect
-            // левая верхняя точка (250,300), нижняя правая (350,500)
-            rect.set(250, 300, 350, 500);
-            // рисуем прямоугольник из объекта rect
-            canvas.drawRect(rect, p);
-         */
     }
 
     @Override
@@ -135,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_selection, menu);
-
-        /*this.mView = findViewById(R.id.figure);*/
         return true;
     }
 
@@ -144,43 +104,43 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_color_black:
-                mFigure.Color = ActivityFigure.eColor.BLACK;
+                draw.setColor(Color.BLACK);
                 return true;
             case R.id.menu_color_gray:
-                mFigure.Color = ActivityFigure.eColor.GRAY;
+                draw.setColor(Color.GRAY);
                 return true;
             case R.id.menu_color_blue:
-                mFigure.Color = ActivityFigure.eColor.BLUE;
+                draw.setColor(Color.BLUE);
                 return true;
             case R.id.menu_color_red:
-                mFigure.Color = ActivityFigure.eColor.RED;
+                draw.setColor(Color.RED);
                 return true;
             case R.id.menu_form_circle:
-                mFigure.Form = ActivityFigure.eForm.CIRCLE;
+                draw.setFigure(eFigure.CIRCLE);
                 drawFigure();
                 return true;
             case R.id.menu_form_square:
-                mFigure.Form = ActivityFigure.eForm.SQUARE;
+                draw.setFigure(eFigure.SQUARE);
                 drawFigure();
                 return true;
             case R.id.menu_form_rectangle:
-                mFigure.Form = ActivityFigure.eForm.RECTANGLE;
+                draw.setFigure(eFigure.RECTANGLE);
                 drawFigure();
                 return true;
             case R.id.menu_position_center:
-                mFigure.Position = ActivityFigure.ePosition.CENTER;
+                draw.setPosition(ePosition.CENTER);
                 return true;
             case R.id.menu_position_left:
-                mFigure.Position = ActivityFigure.ePosition.LEFT;
+                draw.setPosition(ePosition.LEFT);
                 return true;
             case R.id.menu_position_right:
-                mFigure.Position = ActivityFigure.ePosition.RIGHT;
+                draw.setPosition(ePosition.RIGHT);
                 return true;
             case R.id.menu_position_bottom:
-                mFigure.Position = ActivityFigure.ePosition.BOTTOM;
+                draw.setPosition(ePosition.BOTTOM);
                 return true;
             case R.id.menu_position_top:
-                mFigure.Position = ActivityFigure.ePosition.TOP;
+                draw.setPosition(ePosition.TOP);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -188,11 +148,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onScreenClear(MenuItem item) {
-        mView.setVisibility(View.INVISIBLE);
+        draw.Clear();
     }
 
     public  void drawFigure() {
-        this.mFigure.applyOn(this, mView);
+        draw.draw();
     }
 
     public void onDrawFigure(MenuItem item) {
