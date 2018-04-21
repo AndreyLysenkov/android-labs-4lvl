@@ -32,45 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(draw);
     }
 
-    class DrawView extends View {
-
-        Paint p;
-        Canvas canvas;
-        DrawOption option;
-
-
-        public DrawView(Context context, DrawOption option) {
-            super(context);
-            p = new Paint();
-            p.setColor(option.Clear ? Color.WHITE : option.Color);
-            this.option = option;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            this.canvas = canvas;
-
-            // clear screen
-            this.canvas.drawARGB(255, 255, 255, 255);
-
-            if (this.option.Clear)
-                return;
-
-            switch (this.option.Figure) {
-                case CIRCLE:
-                    canvas.drawCircle(100, 200, 50, p);
-                    break;
-                case SQUARE:
-                    canvas.drawRect(200, 150, 400, 350, p);
-                    break;
-                case RECTANGLE:
-                    canvas.drawRect(200, 150, 400, 200, p);
-                    break;
-            }
-        }
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
