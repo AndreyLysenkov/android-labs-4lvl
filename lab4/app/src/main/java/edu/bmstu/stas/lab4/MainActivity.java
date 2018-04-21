@@ -1,6 +1,7 @@
 package edu.bmstu.stas.lab4;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-
-    public void initializeDatabase() {
+    private void initializeDatabase() {
         this.database = getBaseContext().openOrCreateDatabase
                 ("car.db", MODE_PRIVATE, null);
         this.database.execSQL("CREATE TABLE IF NOT EXISTS cars (" +
@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         return success;
     }
 
+    private void openQueryActivity() {
+        Intent intent = new Intent(MainActivity.this, QueryActivity.class);
+        startActivity(intent);
+    }
+
     public void onCreateAndAddExampleDatabase(View view) {
         this.initializeDatabase();
         boolean success = this.addExampleData();
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.database_message_onCreateExample, Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, R.string.database_message_onCreateExample_fail, Toast.LENGTH_SHORT).show();
+        this.openQueryActivity();
     }
 
-    // TODO;
 }
