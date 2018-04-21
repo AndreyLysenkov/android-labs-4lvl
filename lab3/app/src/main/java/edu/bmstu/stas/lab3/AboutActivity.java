@@ -13,13 +13,9 @@ public class AboutActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        int color = Color.BLACK;
-        int size = 10;
-        String text = "placeholder";
-
-        size = getIntent().getExtras().getInt("size");
-        color = getIntent().getExtras().getInt("color");
-        text = getIntent().getExtras().getString("text");
+        int size = getIntent().getExtras().getInt("size");
+        int color = getIntent().getExtras().getInt("color");
+        String text = getIntent().getExtras().getString("text");
 
         TextView infoTextView =
                 (TextView)findViewById(R.id.activity_about_content);

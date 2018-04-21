@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">lab3_next</string>
+    <string name="activity_main_color_black_name">черный</string>
+    <string name="activity_main_color_gray_name">серый</string>
+    <string name="activity_main_color_blue_name">синий</string>
+    <string name="activity_main_color_red_name">красный</string>
+    <string name="activity_main_color_green_name">зеленый</string>
+    <string name="activity_main_color_random_name">случайный</string>
+    <string name="activity_main_button_color_label">задать цвет</string>
+</resources>
