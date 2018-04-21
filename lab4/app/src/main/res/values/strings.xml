@@ -10,4 +10,7 @@
     <string name="activity_query_button_5_label">запрос 5</string>
     <string name="activity_query_button_6_label">запрос 6</string>
     <string name="activity_query_button_7_label">запрос 7</string>
+    <string name="database_message_output_log_success">success log output</string>
+    <string name="database_message_output_file_fail">failed file output</string>
+    <string name="database_message_output_file_success">success file output</string>
 </resources>

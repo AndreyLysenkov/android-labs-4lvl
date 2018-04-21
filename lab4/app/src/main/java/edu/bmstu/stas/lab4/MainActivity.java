@@ -1,6 +1,7 @@
 package edu.bmstu.stas.lab4;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,16 +11,27 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
 
     SQLiteDatabase database;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.onCreateAndAddExampleDatabase();
+        this.initializeDatabase();
+
+        String query = "SELECT * FROM cars";
+        Cursor elements = this.database.rawQuery(query, null);
+        if (elements.getCount() == 0)
+            this.onAddExampleDatabase();
     }
 
     private void initializeDatabase() {
@@ -53,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         value.put("abs", abs);
         value.put("safety", safety);
         value.put("consumption", consumption);
+        value.put("id", this.count);
+        this.count++;
         return this.database.insert("cars", null, value) >= 0;
     }
 
@@ -80,8 +94,7 @@ public class MainActivity extends AppCompatActivity {
         return success;
     }
 
-    public void onCreateAndAddExampleDatabase() {
-        this.initializeDatabase();
+    public void onAddExampleDatabase() {
         boolean success = this.addExampleData();
         if (success)
             Toast.makeText(this, R.string.database_message_onCreateExample, Toast.LENGTH_SHORT).show();
@@ -89,26 +102,50 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.database_message_onCreateExample_fail, Toast.LENGTH_SHORT).show();
     }
 
-    public String recordToString(Cursor cursor) {
+    private String recordToString(Cursor cursor) {
         StringBuilder result = new StringBuilder();
-        result.append("record #" + Integer.toString(cursor.getInt(cursor.getColumnIndex("id"))));
-        result.append("\n");
-        result.append("type: " + cursor.getString(cursor.getColumnIndex("type")));
-        result.append("manufacture: " + cursor.getString(cursor.getColumnIndex("manufacture")));
-        result.append("model: " + cursor.getString(cursor.getColumnIndex("model")));
-        result.append("baggage" + Integer.toString(cursor.getInt(cursor.getColumnIndex("baggage"))));
+
+        result.append("\n---");
+        result.append("\nrecord #" + Integer.toString(cursor.getInt(cursor.getColumnIndex("id"))));
+        result.append("\ntype: " + cursor.getString(cursor.getColumnIndex("type")));
+        result.append("\nmanufacture: " + cursor.getString(cursor.getColumnIndex("manufacture")));
+        result.append("\nmodel: " + cursor.getString(cursor.getColumnIndex("model")));
+        result.append("\nbaggage: " + Integer.toString(cursor.getInt(cursor.getColumnIndex("baggage"))));
         //result.append("abs" + Integer.toString(cursor.getInt(cursor.getColumnIndex("abs"))));
-        result.append("safety" + Integer.toString(cursor.getInt(cursor.getColumnIndex("safety"))));
-        result.append("consumption" + Float.toString(cursor.getFloat(cursor.getColumnIndex("consumption"))));
+        result.append("\nsafety: " + Integer.toString(cursor.getInt(cursor.getColumnIndex("safety"))));
+        result.append("\nconsumption: " + Float.toString(cursor.getFloat(cursor.getColumnIndex("consumption"))));
+        result.append("\n---");
 
         return result.toString();
     }
 
-    public void logCursor(Cursor cursor) {
-        while (cursor.moveToNext()) {
+    private void logCursor(Cursor cursor) {
+        do {
             Log.i("database/cursor", this.recordToString(cursor));
+        } while (cursor.moveToNext());
+        Toast.makeText(this, R.string.database_message_output_log_success, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    public void fileCursor(Cursor cursor) {
+        StringBuilder result = new StringBuilder();
+
+        do {
+            result.append(this.recordToString(cursor));
+        } while (cursor.moveToNext());
+
+        File cursorFile = new File( getApplicationInfo().dataDir, "query1.txt");
+        try {
+            cursorFile.createNewFile();
+            FileOutputStream outputStream = new FileOutputStream(cursorFile, false);
+            outputStream.write(result.toString().getBytes());
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, R.string.database_message_output_file_fail, Toast.LENGTH_SHORT).show();
         }
-        cursor.moveToFirst();
+        Toast.makeText(this, R.string.database_message_output_file_success, Toast.LENGTH_SHORT).show();
     }
 
     public void onQuery(View view) {
@@ -125,7 +162,8 @@ public class MainActivity extends AppCompatActivity {
         Cursor result = this.database.rawQuery(query, null);
         result.moveToFirst();
         this.logCursor(result);
-
+        result.moveToFirst();
+        this.fileCursor(result);
 
 
         /*
