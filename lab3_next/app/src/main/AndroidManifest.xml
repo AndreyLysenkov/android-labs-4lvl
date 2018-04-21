@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ColorActivity"></activity>
+        <activity android:name=".ColorActivity" />
+        <activity android:name=".TextActivity" />
+        <activity android:name=".SizeActivity"></activity>
     </application>
 
 </manifest>

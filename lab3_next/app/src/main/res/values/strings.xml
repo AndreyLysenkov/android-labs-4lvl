@@ -7,4 +7,10 @@
     <string name="activity_main_color_green_name">зеленый</string>
     <string name="activity_main_color_random_name">случайный</string>
     <string name="activity_main_button_color_label">задать цвет</string>
+    <string name="activity_text_field_label">введите текст</string>
+    <string name="activity_text_button_label">отправить</string>
+    <string name="activity_main_text_field_label">пример текста</string>
+    <string name="activity_main_button_text_label">задать текст</string>
+    <string name="activity_size_button_apply_label">отправить</string>
+    <string name="activity_main_button_size_label">задать размер</string>
 </resources>

@@ -23,32 +23,37 @@ public class MainActivity extends AppCompatActivity {
     public void onColorPick(View view) {
         Intent intent = new Intent(MainActivity.this, ColorActivity.class);
         startActivityForResult(intent, 0);
+    }
+
+    public void onTextEdit(View view) {
+        Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+        startActivityForResult(intent, 1);
 
     }
 
+    public void onSizeEdit(View view) {
+        Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+        startActivityForResult(intent, 2);
+
+    }
+
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        TextView text = findViewById(R.id.activity_main_text);
 
         switch (requestCode) {
             case 0:
                 int color = data.getExtras().getInt("color");
-                TextView text = findViewById(R.id.activity_main_text);
                 text.setTextColor(color);
+                break;
+            case 1:
+                String str = data.getExtras().getString("text");
+                text.setText(str);
+                break;
+            case 2:
+                int size = data.getExtras().getInt("size");
+                text.setTextSize(size);
                 break;
         }
     }
 }
-
-
-/*
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-     super.onCreate(savedInstanceState);
-     setContentView(R.layout.activity_main);
-}
-
- public void onClick(View view) {
-     Uri address = Uri.parse("https://developer.android.com/index.html");
-     Intent openlinkIntent = new Intent(Intent.ACTION_VIEW, address);
-     startActivity(openlinkIntent);
- }
- */
