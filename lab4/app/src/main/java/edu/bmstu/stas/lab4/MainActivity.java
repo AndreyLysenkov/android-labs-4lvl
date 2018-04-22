@@ -1,21 +1,14 @@
 package edu.bmstu.stas.lab4;
 
-import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -111,64 +104,74 @@ public class MainActivity extends AppCompatActivity {
         boolean isFile = false;
         boolean isView = false;
         String query = "* FROM cars";
+        eOutputMode mode = eOutputMode.ALL;
 
-        // TODO queries;
+        // TODO; перепроверить isView, isLog, isFile согласно методичке;
         switch (view.getId()) {
             case R.id.activity_query_button_1:
                 id = 1;
                 isView = false;
                 isLog = true;
                 isFile = true;
-                query = "";
+                query = "* FROM cars ORDER BY safety";
                 break;
             case R.id.activity_query_button_2:
                 id = 2;
                 isView = true;
                 isLog = true;
                 isFile = false;
-                query = "";
+                query = "* FROM cars GROUP BY safety, abs";
                 break;
             case R.id.activity_query_button_3:
                 id = 3;
                 isView = false;
                 isLog = true;
                 isFile = true;
-                query = "";
+                query = "SUM(baggage) FROM cars";
+                mode = eOutputMode.NUMBER;
                 break;
             case R.id.activity_query_button_4:
                 id = 4;
                 isView = true;
                 isLog = true;
                 isFile = true;
-                query = "";
+                query = ""; // TODO;
+                mode = eOutputMode.NUMBER;
                 break;
             case R.id.activity_query_button_5:
                 id = 5;
                 isView = false;
                 isLog = true;
                 isFile = false;
-                query = "";
+                query = "* FROM cars WHERE safety = (SELECT MAX(safety) FROM cars)";
                 break;
             case R.id.activity_query_button_6:
                 id = 6;
                 isView = true;
                 isLog = true;
                 isFile = false;
-                query = "";
+                query = "* FROM cars WHERE " +
+                        "consumption > (SELECT AVG(consumption) FROM cars)" +
+                        "AND baggage > (SELECT AVG(baggage) FROM cars)" +
+                        "AND safety > (SELECT AVG(safety) FROM cars)";
                 break;
             case R.id.activity_query_button_7:
                 id = 7;
                 isView = true;
                 isLog = true;
                 isFile = false;
-                query = "";
+                query = "* FROM cars WHERE " +
+                        "consumption < (SELECT AVG(consumption) FROM cars)" +
+                        "AND baggage < (SELECT AVG(baggage) FROM cars)" +
+                        "AND safety < (SELECT AVG(safety) FROM cars)";
                 break;
             case R.id.activity_query_button_8:
                 id = 8;
                 isView = false;
                 isLog = true;
                 isFile = false;
-                query = "";
+                query = "* FROM cars WHERE consumption > 5";
+                mode = eOutputMode.FIRST;
                 break;
         }
 
@@ -177,16 +180,16 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("file", isFile);
         intent.putExtra("view", isView);
         intent.putExtra("id", id);
+        intent.putExtra("mode", mode);
 
-        StringBuilder logRecord = new StringBuilder();
-        logRecord.append("query");
-        logRecord.append("request query #").append(Integer.toString(id));
-        logRecord.append("\nlog output: ").append(Boolean.toString(isLog));
-        logRecord.append("\nfile output: ").append(Boolean.toString(isFile));
-        logRecord.append("\nview output: ").append(Boolean.toString(isView));
-        logRecord.append("\nquery: ").append(query);
+        String logRecord = "query" +
+                "request query #" + Integer.toString(id) +
+                "\nlog output: " + Boolean.toString(isLog) +
+                "\nfile output: " + Boolean.toString(isFile) +
+                "\nview output: " + Boolean.toString(isView) +
+                "\nquery: " + query;
 
-        Log.i("query", logRecord.toString());
+        Log.i("query", logRecord);
 
         startActivity(intent);
 

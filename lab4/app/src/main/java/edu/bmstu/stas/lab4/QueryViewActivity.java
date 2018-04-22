@@ -15,6 +15,8 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class QueryViewActivity extends Activity {
 
@@ -23,24 +25,29 @@ public class QueryViewActivity extends Activity {
     boolean logOutput;
     boolean fileOutput;
     boolean viewOutput;
+    eOutputMode mode;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query_view);
 
-        this.query = getIntent().getExtras().getString("query");
-        this.logOutput= getIntent().getExtras().getBoolean("log");
-        this.fileOutput= getIntent().getExtras().getBoolean("file");
-        this.viewOutput= getIntent().getExtras().getBoolean("view");
-        int id = getIntent().getExtras().getInt("id");
+        Bundle extras = getIntent().getExtras();
+
+        this.query = extras.getString("query");
+        this.logOutput= extras.getBoolean("log");
+        this.fileOutput= extras.getBoolean("file");
+        this.viewOutput= extras.getBoolean("view");
+        this.mode = (eOutputMode) extras.getSerializable("mode");
+        this.id = extras.getInt("id");
 
         this.openDatabase();
 
         this.requestStoragePermission();
 
         TextView label = findViewById(R.id.activity_query_view_label);
-        String newLabel = label.getText().toString().replace("%id%", Integer.toString(id));
+        String newLabel = label.getText().toString().replace("%id%", Integer.toString(this.id));
         label.setText(newLabel);
 
         this.startQuery();
@@ -82,21 +89,20 @@ public class QueryViewActivity extends Activity {
         Toast.makeText(this, R.string.database_message_output_log_success, Toast.LENGTH_SHORT).show();
     }
 
-    public void fileCursor(Cursor cursor) {
-        StringBuilder result = new StringBuilder();
+    private void logCursorFirst (Cursor cursor) {
+        Log.i("database/cursor", this.recordToString(cursor));
+        Toast.makeText(this, R.string.database_message_output_log_success, Toast.LENGTH_SHORT).show();
+    }
 
-        do {
-            result.append(this.recordToString(cursor));
-        } while (cursor.moveToNext());
-
+    private void writeToFile(String content) {
         File cursorFile = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS), "query1.txt");
+                Environment.DIRECTORY_DOWNLOADS), "query" + this.id + ".txt");
         Log.i("file", "write in `" + cursorFile.getAbsolutePath() + "` folder");
         try {
 
             cursorFile.createNewFile();
             FileOutputStream outputStream = new FileOutputStream(cursorFile, false);
-            outputStream.write(result.toString().getBytes(), 0, result.toString().getBytes().length);
+            outputStream.write(content.getBytes(), 0, content.getBytes().length);
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -104,6 +110,20 @@ public class QueryViewActivity extends Activity {
             return;
         }
         Toast.makeText(this, R.string.database_message_output_file_success, Toast.LENGTH_SHORT).show();
+    }
+
+    public void fileCursor(Cursor cursor) {
+        StringBuilder result = new StringBuilder();
+
+        do {
+            result.append(this.recordToString(cursor));
+        } while (cursor.moveToNext());
+
+        this.writeToFile(result.toString());
+    }
+
+    public  void fileCursorFirst(Cursor cursor) {
+        this.writeToFile(this.recordToString(cursor));
     }
 
     public void viewCursor(Cursor cursor) {
@@ -114,22 +134,95 @@ public class QueryViewActivity extends Activity {
         Toast.makeText(this, R.string.database_message_output_view_success, Toast.LENGTH_SHORT).show();
     }
 
+    public String numbersToString(float[] numbers) {
+        if (numbers.length == 1)
+            return  Float.toString(numbers[0]);
+        return Arrays.toString(numbers);
+    }
+
+    public void logNumber(float[] numbers) {
+        Log.i("database/cursor", this.numbersToString(numbers));
+    }
+
+    public void fileNumber(float[] numbers) {
+        this.writeToFile(this.numbersToString(numbers));
+    }
+
+    public void viewNumber(float[] numbers) {
+        TextView label = findViewById(R.id.activity_query_view_label);
+        String newLabel = label.getText().toString() + "\nresult " + this.numbersToString(numbers);
+        label.setText(newLabel);
+    }
+
     public void startQuery() {
         Cursor result = this.database.rawQuery(this.query, null);
 
+        if (result.getCount() == 0)
+            return;
+
         if (this.logOutput) {
             result.moveToFirst();
-            this.logCursor(result);
+            switch (this.mode) {
+                case ALL:
+                    this.logCursor(result);
+                    break;
+                case FIRST:
+                    this.logCursorFirst(result);
+                    break;
+                case NUMBER:
+                    if (id == 3) {
+                        float r = result.getFloat(0);
+                        this.logNumber(new float[] { r });
+                    }
+                    if (id == 4) {
+                        // TODO;
+                    }
+                    break;
+            }
         }
 
         if (this.fileOutput) {
             result.moveToFirst();
-            this.fileCursor(result);
+            switch (this.mode) {
+                case ALL:
+                    this.fileCursor(result);
+                    break;
+                case FIRST:
+                    this.fileCursorFirst(result);
+                    break;
+                case NUMBER:
+                    if (id == 3) {
+                        float r = result.getFloat(0);
+                        this.fileNumber(new float[] { r });
+                    }
+                    if (id == 4) {
+                        // TODO;
+                    }
+                    break;
+            }
         }
 
         if (this.viewOutput) {
             result.moveToFirst();
-            this.viewCursor(result);
+            switch (this.mode) {
+                case ALL:
+                    this.viewCursor(result);
+                    break;
+                case FIRST:
+                    result.moveToLast();
+                    this.viewCursor(result);
+                    break;
+                case NUMBER:
+                    if (id == 3) {
+                        float r = result.getFloat(0);
+                        this.viewNumber(new float[] { r });
+                    }
+                    if (id == 4) {
+                        // TODO;
+                    }
+                    break;
+            }
+
         }
     }
 
