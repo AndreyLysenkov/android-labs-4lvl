@@ -3,4 +3,11 @@
     <string name="activity_main_content_placeholder">введите текст</string>
     <string name="activity_main_apply_label">отобразить</string>
     <string name="activity_output_content_placeholder">кек</string>
+    <string name="list_group_placeholder">--- some group name ---</string>
+    <string-array name="activity_main_chooser_color">
+        <item>черный</item>
+        <item>синий</item>
+        <item>зеленый</item>
+        <item>красный</item>
+    </string-array>
 </resources>
