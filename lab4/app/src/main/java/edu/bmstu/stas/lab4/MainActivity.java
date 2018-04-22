@@ -1,10 +1,14 @@
 package edu.bmstu.stas.lab4;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +16,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         Cursor elements = this.database.rawQuery(query, null);
         if (elements.getCount() == 0)
             this.onAddExampleDatabase();
+
+        this.requestStoragePermission();
     }
 
     private void initializeDatabase() {
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("database", "created or opened");
     }
 
-    private boolean addExampleRecord (
+    private boolean addExampleRecord(
             String type,
             String manufacture,
             String model,
@@ -126,6 +131,11 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.database_message_output_log_success, Toast.LENGTH_SHORT).show();
     }
 
+    public void requestStoragePermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                0);
+    }
 
 
     public void fileCursor(Cursor cursor) {
@@ -136,9 +146,11 @@ public class MainActivity extends AppCompatActivity {
         } while (cursor.moveToNext());
 
         // TODO; change on download user folder
-        File cursorFile = new File( getApplicationInfo().dataDir, "query1.txt");
-        Log.i("file", "write in `" + getApplicationInfo().dataDir +"` folder");
+        File cursorFile = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOWNLOADS), "query1.txt");
+        Log.i("file", "write in `" + cursorFile.getAbsolutePath() + "` folder");
         try {
+
             cursorFile.createNewFile();
             FileOutputStream outputStream = new FileOutputStream(cursorFile, false);
             outputStream.write(result.toString().getBytes(), 0, result.toString().getBytes().length);
@@ -146,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(this, R.string.database_message_output_file_fail, Toast.LENGTH_SHORT).show();
+            return;
         }
         Toast.makeText(this, R.string.database_message_output_file_success, Toast.LENGTH_SHORT).show();
     }
@@ -185,8 +198,8 @@ public class MainActivity extends AppCompatActivity {
 }
         * */
 
-                }
+    }
 
 
-                // TODO;
-                }
+    // TODO;
+}
