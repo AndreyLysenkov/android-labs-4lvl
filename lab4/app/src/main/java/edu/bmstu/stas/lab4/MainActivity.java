@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         Log.i("database", "created or opened");
     }
 
+    public void requestStoragePermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                0);
+    }
+
     private boolean addExampleRecord(
             String type,
             String manufacture,
@@ -131,13 +137,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.database_message_output_log_success, Toast.LENGTH_SHORT).show();
     }
 
-    public void requestStoragePermission() {
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                0);
-    }
-
-
     public void fileCursor(Cursor cursor) {
         StringBuilder result = new StringBuilder();
 
@@ -145,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
             result.append(this.recordToString(cursor));
         } while (cursor.moveToNext());
 
-        // TODO; change on download user folder
         File cursorFile = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "query1.txt");
         Log.i("file", "write in `" + cursorFile.getAbsolutePath() + "` folder");

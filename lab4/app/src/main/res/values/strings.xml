@@ -13,4 +13,15 @@
     <string name="database_message_output_log_success">success log output</string>
     <string name="database_message_output_file_fail">failed file output</string>
     <string name="database_message_output_file_success">success file output</string>
+    <string name="query_id_label">id</string>
+    <string name="query_value_placeholder">---</string>
+    <string name="query_type_label">тип</string>
+    <string name="query_manufacture_label">производитель</string>
+    <string name="query_model_label">модель</string>
+    <string name="query_baggage_label">багажник</string>
+    <string name="query_abs_label">есть abs</string>
+    <string name="query_safety_label">подушки безопасности</string>
+    <string name="query_consumption_label">потребление топлива</string>
+    <string name="query_record_begin_label">--- начало записи ---</string>
+    <string name="query_record_end_label">--- конец записи ---</string>
 </resources>
