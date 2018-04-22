@@ -34,11 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
     ExpandableListView chooser;
 
+    int chosen_size;
+    int chosen_color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        chosen_size = 20;
+        chosen_color = Color.BLACK;
 
         Map<String, String> atributes;
         this.groupData = new ArrayList<Map<String, String>>();
@@ -88,8 +93,25 @@ public class MainActivity extends AppCompatActivity {
 
         ExpandableListView expandableListView = (ExpandableListView) findViewById(R.id.activity_main_chooser);
         expandableListView.setAdapter(adapter);
+
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener()
+            {
+                @Override
+                public boolean onChildClick(
+                        ExpandableListView parent, View v,
+                        int groupPosition, int childPosition,
+                        long id) {
+                    MainActivity.this.onItemChoosed(groupPosition, childPosition);
+                    return true;
+                }
+            });
     }
 
+
+    public void onItemChoosed(int group, int item) {
+        this.chosen_color = colors[group];
+        this.chosen_size = sizes[item];
+    }
 
     public void onApply(View view) {
         // TODO;
@@ -99,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, OutputActivity.class);
 
         intent.putExtra("content", ((EditText) findViewById(R.id.activity_main_content)).getText().toString());
-        intent.putExtra("color", Color.BLUE);
-        intent.putExtra("size", 20);
+        intent.putExtra("color", chosen_color);
+        intent.putExtra("size", chosen_size);
 
         startActivity(intent);
     }

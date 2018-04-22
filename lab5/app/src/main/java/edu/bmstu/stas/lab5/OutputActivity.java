@@ -25,7 +25,6 @@ public class OutputActivity extends AppCompatActivity {
     }
 
     private void setView() {
-        // TODO;
         TextView view = findViewById(R.id.activity_output_content);
 
         view.setText(this.content);
