@@ -24,4 +24,5 @@
     <string name="query_consumption_label">потребление топлива</string>
     <string name="query_record_begin_label">--- начало записи ---</string>
     <string name="query_record_end_label">--- конец записи ---</string>
+    <string name="activity_query_view_label">view output</string>
 </resources>
