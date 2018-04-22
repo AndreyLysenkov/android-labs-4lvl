@@ -24,5 +24,7 @@
     <string name="query_consumption_label">потребление топлива</string>
     <string name="query_record_begin_label">--- начало записи ---</string>
     <string name="query_record_end_label">--- конец записи ---</string>
-    <string name="activity_query_view_label">view output</string>
+    <string name="activity_query_view_label">view output of query #%id%</string>
+    <string name="database_message_output_view_success">success view output</string>
+    <string name="activity_query_button_8_label">запрос 8</string>
 </resources>

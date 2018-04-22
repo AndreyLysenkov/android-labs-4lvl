@@ -106,10 +106,87 @@ public class MainActivity extends AppCompatActivity {
     public void onQuery(View view) {
         Intent intent = new Intent(MainActivity.this, QueryViewActivity.class);
 
-        intent.putExtra("query", "SELECT rowid _id, * FROM cars ORDER BY safety");
-        intent.putExtra("log", true);
-        intent.putExtra("file", true);
-        intent.putExtra("view", true);
+        int id = 0;
+        boolean isLog = false;
+        boolean isFile = false;
+        boolean isView = false;
+        String query = "* FROM cars";
+
+        // TODO queries;
+        switch (view.getId()) {
+            case R.id.activity_query_button_1:
+                id = 1;
+                isView = false;
+                isLog = true;
+                isFile = true;
+                query = "";
+                break;
+            case R.id.activity_query_button_2:
+                id = 2;
+                isView = true;
+                isLog = true;
+                isFile = false;
+                query = "";
+                break;
+            case R.id.activity_query_button_3:
+                id = 3;
+                isView = false;
+                isLog = true;
+                isFile = true;
+                query = "";
+                break;
+            case R.id.activity_query_button_4:
+                id = 4;
+                isView = true;
+                isLog = true;
+                isFile = true;
+                query = "";
+                break;
+            case R.id.activity_query_button_5:
+                id = 5;
+                isView = false;
+                isLog = true;
+                isFile = false;
+                query = "";
+                break;
+            case R.id.activity_query_button_6:
+                id = 6;
+                isView = true;
+                isLog = true;
+                isFile = false;
+                query = "";
+                break;
+            case R.id.activity_query_button_7:
+                id = 7;
+                isView = true;
+                isLog = true;
+                isFile = false;
+                query = "";
+                break;
+            case R.id.activity_query_button_8:
+                id = 8;
+                isView = false;
+                isLog = true;
+                isFile = false;
+                query = "";
+                break;
+        }
+
+        intent.putExtra("query", "SELECT rowid _id, " + query);
+        intent.putExtra("log", isLog);
+        intent.putExtra("file", isFile);
+        intent.putExtra("view", isView);
+        intent.putExtra("id", id);
+
+        StringBuilder logRecord = new StringBuilder();
+        logRecord.append("query");
+        logRecord.append("request query #").append(Integer.toString(id));
+        logRecord.append("\nlog output: ").append(Boolean.toString(isLog));
+        logRecord.append("\nfile output: ").append(Boolean.toString(isFile));
+        logRecord.append("\nview output: ").append(Boolean.toString(isView));
+        logRecord.append("\nquery: ").append(query);
+
+        Log.i("query", logRecord.toString());
 
         startActivity(intent);
 

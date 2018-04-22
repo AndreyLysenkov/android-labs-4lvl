@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -32,10 +33,15 @@ public class QueryViewActivity extends Activity {
         this.logOutput= getIntent().getExtras().getBoolean("log");
         this.fileOutput= getIntent().getExtras().getBoolean("file");
         this.viewOutput= getIntent().getExtras().getBoolean("view");
+        int id = getIntent().getExtras().getInt("id");
 
         this.openDatabase();
 
         this.requestStoragePermission();
+
+        TextView label = findViewById(R.id.activity_query_view_label);
+        String newLabel = label.getText().toString().replace("%id%", Integer.toString(id));
+        label.setText(newLabel);
 
         this.startQuery();
     }
@@ -45,7 +51,6 @@ public class QueryViewActivity extends Activity {
                 ("car.db", MODE_PRIVATE, null);
         Log.i("database", "opened");
     }
-
 
     public void requestStoragePermission() {
         ActivityCompat.requestPermissions(this,
@@ -102,22 +107,14 @@ public class QueryViewActivity extends Activity {
     }
 
     public void viewCursor(Cursor cursor) {
+        Log.i("view", "binding adapter");
         ListView lvItems = (ListView) findViewById(R.id.activity_query_view_items);
         QueryAdapter adapter= new QueryAdapter(this, cursor);
         lvItems.setAdapter(adapter);
+        Toast.makeText(this, R.string.database_message_output_view_success, Toast.LENGTH_SHORT).show();
     }
 
-
     public void startQuery() {
-        /*String queryString =
-                "SELECT column1, (SELECT max(column1) FROM table1) AS max FROM table1 " +
-                        "WHERE column1 = ? OR column1 = ? ORDER BY column1";String queryString =
-                "SELECT column1, (SELECT max(column1) FROM table1) AS max FROM table1 " +
-                        "WHERE column1 = ? OR column1 = ? ORDER BY column1";
-
-                        sqLiteDatabase.rawQuery(queryString, whereArgs);
-                        */
-
         Cursor result = this.database.rawQuery(this.query, null);
 
         if (this.logOutput) {
@@ -134,21 +131,6 @@ public class QueryViewActivity extends Activity {
             result.moveToFirst();
             this.viewCursor(result);
         }
-
-        /*
-        * public void onCursorClick(View v) {
-	String query = "SELECT " + CatsDataBase._ID + ", "
-			+ CatsDataBase.CATNAME + " FROM " + CatsDataBase.TABLE_NAME;
-	Cursor catCursor = sqdb.rawQuery(query, null);
-	catCursor.moveToFirst(); // переходим на первую строку
-	// извлекаем данные из курсора
-	int item_id = catCursor
-			.getInt(catCursor.getColumnIndex(CatsDataBase._ID));
-	String item_content = catCursor.getString(catCursor
-			.getColumnIndex(CatsDataBase.CATNAME));
-	catCursor.close();
-
-	txtData.setText("id: " + item_id + " Имя кота: " + item_content);*/
     }
 
 }
