@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
         String query = "* FROM cars";
         eOutputMode mode = eOutputMode.ALL;
 
-        // TODO; перепроверить isView, isLog, isFile согласно методичке;
         switch (view.getId()) {
             case R.id.activity_query_button_1:
                 id = 1;
@@ -150,10 +150,12 @@ public class MainActivity extends AppCompatActivity {
                 isView = true;
                 isLog = true;
                 isFile = false;
+                String value = ((EditText)findViewById(R.id.activity_main_input)).getText().toString();
                 query = "* FROM cars WHERE " +
-                        "consumption > (SELECT AVG(consumption) FROM cars)" +
-                        "AND baggage > (SELECT AVG(baggage) FROM cars)" +
-                        "AND safety > (SELECT AVG(safety) FROM cars)";
+                        "consumption > %s%" +
+                        "AND baggage > %s%" +
+                        "AND safety > %s%"
+                    .replace("%s%", value);
                 break;
             case R.id.activity_query_button_7:
                 id = 7;

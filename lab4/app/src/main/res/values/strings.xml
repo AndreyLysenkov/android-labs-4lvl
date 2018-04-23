@@ -27,4 +27,5 @@
     <string name="activity_query_view_label">view output of query #%id%</string>
     <string name="database_message_output_view_success">success view output</string>
     <string name="activity_query_button_8_label">запрос 8</string>
+    <string name="activity_main_input_default">5</string>
 </resources>
