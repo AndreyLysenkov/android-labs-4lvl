@@ -16,4 +16,12 @@
     <string name="activity_record_mode_label_delete">удалить запись</string>
     <string name="activity_record_mode_label_edit">изменить запись</string>
     <string name="activity_record_mode_label_add">добавить запись</string>
+    <string name="activity_record_edit_dialog_title">введите id</string>
+    <string name="activity_record_edit_dialog_message">введите id записи, которую хотите изменить</string>
+    <string name="activity_record_field_manufacture_placeholder">введите производителя</string>
+    <string name="activity_record_field_model_placeholder">введите марку авто</string>
+    <string name="activity_record_field_year_placeholder">введите год авто</string>
+    <string name="activity_record_accept_delete">удалить</string>
+    <string name="activity_record_accept_edit">изменить</string>
+    <string name="activity_record_accept_add">добавить</string>
 </resources>

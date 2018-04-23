@@ -105,7 +105,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="@string/activity_record_field_placeholder" />
+                    android:text="@string/activity_record_field_manufacture_placeholder" />
 
             </LinearLayout>
 
@@ -130,7 +130,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="@string/activity_record_field_placeholder" />
+                    android:text="@string/activity_record_field_model_placeholder" />
 
             </LinearLayout>
 
@@ -154,8 +154,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="@string/activity_record_field_placeholder" />
+                    android:inputType="numberDecimal"
+                    android:text="@string/activity_record_field_year_placeholder" />
 
             </LinearLayout>
 
