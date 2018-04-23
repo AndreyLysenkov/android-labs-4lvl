@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">storage</string>
     <string name="database_insert_fail">failed to insert record `%s%`</string>
+    <string name="activity_main_button_create_dummy_database_label">add example records</string>
 </resources>
