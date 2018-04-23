@@ -170,13 +170,8 @@ public class QueryViewActivity extends Activity {
                     this.logCursorFirst(result);
                     break;
                 case NUMBER:
-                    if (id == 3) {
-                        float r = result.getFloat(0);
-                        this.logNumber(new float[] { r });
-                    }
-                    if (id == 4) {
-                        // TODO;
-                    }
+                    float r = result.getFloat(0);
+                    this.logNumber(new float[] { r });
                     break;
             }
         }
@@ -191,13 +186,8 @@ public class QueryViewActivity extends Activity {
                     this.fileCursorFirst(result);
                     break;
                 case NUMBER:
-                    if (id == 3) {
-                        float r = result.getFloat(0);
-                        this.fileNumber(new float[] { r });
-                    }
-                    if (id == 4) {
-                        // TODO;
-                    }
+                    float r = result.getFloat(0);
+                    this.fileNumber(new float[] { r });
                     break;
             }
         }
@@ -213,13 +203,8 @@ public class QueryViewActivity extends Activity {
                     this.viewCursor(result);
                     break;
                 case NUMBER:
-                    if (id == 3) {
-                        float r = result.getFloat(0);
-                        this.viewNumber(new float[] { r });
-                    }
-                    if (id == 4) {
-                        // TODO;
-                    }
+                    float r = result.getFloat(0);
+                    this.viewNumber(new float[] { r });
                     break;
             }
 

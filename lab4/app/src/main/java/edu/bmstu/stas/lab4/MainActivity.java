@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
                 isView = true;
                 isLog = true;
                 isFile = true;
-                query = ""; // TODO;
-                mode = eOutputMode.NUMBER;
+                query = "type, manufacture, model, AVG(baggage) AS baggage, abs, AVG(safety) AS safety, AVG(consumption) AS consumption " +
+                        "FROM cars GROUP BY manufacture";
                 break;
             case R.id.activity_query_button_5:
                 id = 5;
@@ -152,10 +152,9 @@ public class MainActivity extends AppCompatActivity {
                 isFile = false;
                 String value = ((EditText)findViewById(R.id.activity_main_input)).getText().toString();
                 query = "* FROM cars WHERE " +
-                        "consumption > %s%" +
-                        "AND baggage > %s%" +
-                        "AND safety > %s%"
-                    .replace("%s%", value);
+                        "consumption > " + value +
+                        " AND baggage > " +value +
+                        " AND safety > " +value;
                 break;
             case R.id.activity_query_button_7:
                 id = 7;
