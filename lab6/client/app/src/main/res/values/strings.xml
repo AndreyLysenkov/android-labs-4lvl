@@ -4,7 +4,7 @@
     <string name="activity_main_delete_label">удалить запись</string>
     <string name="activity_main_edit_label">изменить запись</string>
     <string name="activity_main_add_label">добавить звпись</string>
-    <string name="activity_main_add_label_placeholder">uknown mode</string>
+    <string name="activity_record_mode_label_placeholder">uknown mode</string>
     <string name="activity_record_accept_placeholder">confirm</string>
     <string name="activity_record_field_id_label">id</string>
     <string name="activity_record_field_id_editable_placeholder">введите id записи</string>
@@ -13,4 +13,7 @@
     <string name="activity_record_field_placeholder">#value#</string>
     <string name="activity_record_field_model_label">марка</string>
     <string name="activity_record_field_year_label">год производства</string>
+    <string name="activity_record_mode_label_delete">удалить запись</string>
+    <string name="activity_record_mode_label_edit">изменить запись</string>
+    <string name="activity_record_mode_label_add">добавить запись</string>
 </resources>
