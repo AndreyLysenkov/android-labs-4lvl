@@ -11,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RecordAdapter extends CursorAdapter {
@@ -28,10 +26,11 @@ public class RecordAdapter extends CursorAdapter {
         return LayoutInflater.from(context).inflate(R.layout.music_record, parent, false);
     }
 
-    // https://stackoverflow.com/questions/4142313/java-convert-milliseconds-to-time-format
     private String durationToString(int duration, String format) {
-        DateFormat formatter = new SimpleDateFormat(format);
-        return formatter.format(new Date(duration));
+        Duration time = Duration.ofMillis(duration);
+        long minets = time.toMinutes();
+        long seconds = time.getSeconds() - minets * 60;
+        return String.format(format, minets, seconds);
     }
 
     private String replaceByTemplate(String source, String[] templates, String[] values) {
