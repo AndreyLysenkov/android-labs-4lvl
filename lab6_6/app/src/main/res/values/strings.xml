@@ -10,4 +10,5 @@
     <string name="record_album_template">%album%</string>
     <string name="record_genre_template">%genres%</string>
     <string name="record_duration_format">HH:mm:ss</string>
+    <string name="activity_main_refresh_label">обновить</string>
 </resources>

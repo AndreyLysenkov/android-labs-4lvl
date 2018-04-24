@@ -6,7 +6,11 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,12 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 MediaStore.Audio.Media.ARTIST); // sort order;
 
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                d,
-                R.layout.music_record,
-                d,
-                d);
-
+        this.viewMusic(cursor);
     }
+
+    public void viewMusic(Cursor cursor) {
+        Log.i("view", "binding adapter");
+        ListView view = (ListView) findViewById(R.id.activity_main_view);
+        RecordAdapter adapter = new RecordAdapter(this, cursor);
+        view.setAdapter(adapter);
+    }
+    
+    public void onRefresh(View view) {
+        this.fetchMusicData();
+    }
+
 }

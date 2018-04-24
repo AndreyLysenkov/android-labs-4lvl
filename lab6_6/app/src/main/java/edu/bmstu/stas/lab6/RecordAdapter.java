@@ -2,6 +2,9 @@ package edu.bmstu.stas.lab6;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +13,9 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class RecordAdapter extends CursorAdapter {
 
@@ -37,6 +42,17 @@ public class RecordAdapter extends CursorAdapter {
         return source;
     }
 
+    private String getGenresByMusicId(Context context, int id) {
+        List<String> result = new ArrayList<>();
+        Uri uri = MediaStore.Audio.Genres.getContentUriForAudioId("external", id);
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+        int index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.NAME);
+        do {
+            result.add(cursor.getString(index));
+        } while (cursor.moveToNext());
+        return TextUtils.join(", ", result);
+    }
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         String line_1_content = context.getResources().getString(R.string.record_line_1_template);
@@ -48,13 +64,23 @@ public class RecordAdapter extends CursorAdapter {
         String duration_template = context.getResources().getString(R.string.record_duration_template);
         String genre_template = context.getResources().getString(R.string.record_genre_template);
 
-        String artist = cursor.getString(cursor.getColumnIndexOrThrow("artist"));
-        String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        String artist = cursor.getString(cursor.getColumnIndexOrThrow(
+                MediaStore.Audio.Media.ARTIST
+        ));
+        String name = cursor.getString(cursor.getColumnIndexOrThrow(
+                MediaStore.Audio.Media.TITLE
+        ));
         String duration = this.durationToString(
-                cursor.getInt(cursor.getColumnIndexOrThrow("duration")),
+                cursor.getInt(cursor.getColumnIndexOrThrow(
+                        MediaStore.Audio.Media.DURATION
+                )),
                 context.getResources().getString(R.string.record_duration_format));
-        String album = cursor.getString(cursor.getColumnIndexOrThrow("album"));
-        String genre = cursor.getString(cursor.getColumnIndexOrThrow("genre"));
+        String album = cursor.getString(cursor.getColumnIndexOrThrow(
+                MediaStore.Audio.Media.ALBUM
+        ));
+        String genre =this.getGenresByMusicId(
+                context,
+                cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
 
         String[] templates = new String[]{
                 artist_template,
