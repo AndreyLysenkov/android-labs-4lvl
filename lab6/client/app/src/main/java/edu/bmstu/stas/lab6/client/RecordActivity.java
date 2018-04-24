@@ -1,7 +1,11 @@
 package edu.bmstu.stas.lab6.client;
 
+import android.content.ContentProviderClient;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.RemoteException;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -104,7 +108,19 @@ public class RecordActivity extends AppCompatActivity {
         return builder.create();
     }
 
-    public void onAccept(View view) {
+    public void onAccept(View view) throws RemoteException {
         // TODO;
+
+        Uri uri = Uri.parse("content://edu.bmstu.stas.lab6.storage/");
+        ContentProviderClient provider = getContentResolver().acquireContentProviderClient(uri);
+        Cursor cursor = provider.query(Uri.parse("content://edu.bmstu.stas.lab.storage/fetch/all"), null, null, null, null);
+
+        /*
+        mCursor = getContentResolver().query(
+                UserDictionary.Words.CONTENT_URI,   // The content URI of the words table
+                mProjection,                        // The columns to return for each row
+                mSelectionClause                    // Selection criteria
+                mSelectionArgs,                     // Selection criteria
+                mSortOrder);*/
     }
 }

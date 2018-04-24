@@ -9,6 +9,6 @@
     <string name="activity_main_color_red_name">красный</string>
     <string name="activity_main_color_green_name">зеленый</string>
     <string name="activity_main_color_random_name">случайный</string>
-    <string name="activity_main_textSize_hint">размер текста</string>
+    <string name="activity_main_textSize_hint">20</string>
     <string name="activity_main_textContent_hint">напишите сам текст</string>
 </resources>

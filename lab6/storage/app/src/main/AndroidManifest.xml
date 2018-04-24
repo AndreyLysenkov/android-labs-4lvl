@@ -12,7 +12,13 @@
 
         <provider
             android:authorities="edu.bmstu.stas.lab6.storage"
-            android:name=".CarsContentProvider"/>
+            android:name=".CarsContentProvider"
+            android:readPermission="edu.bmstu.stas.lab6.storage.READ"
+            android:writePermission="edu.bmstu.stas.lab6.storage.WRITE"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:protectionLevel="signature"
+            />
 
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -1,6 +1,8 @@
 package edu.bmstu.stas.lab6.client;
 
+import android.Manifest;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +15,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void showRecord(RecordActivity.Mode mode) {
+    public void showRecordActivity(RecordActivity.Mode mode) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.class.},
+                0);
+
+
         Intent intent = new Intent(MainActivity.this, RecordActivity.class);
 
         intent.putExtra("mode", mode);
@@ -23,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAdd(View view) {
         // TODO;
-        this.showRecord(RecordActivity.Mode.ADD);
+        this.showRecordActivity(RecordActivity.Mode.ADD);
     }
 
     public void onEdit(View view) {
         // TODO;
-        this.showRecord(RecordActivity.Mode.EDIT);
+        this.showRecordActivity(RecordActivity.Mode.EDIT);
     }
 
     public void onDelete(View view) {
         // TODO;
-        this.showRecord(RecordActivity.Mode.DELETE);
+        this.showRecordActivity(RecordActivity.Mode.DELETE);
     }
 
     public void onView(View view) {
