@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.requestPermission();
-
-        this.fetchMusicData();
     }
 
     public void requestPermission() {
