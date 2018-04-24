@@ -47,6 +47,10 @@ public class RecordAdapter extends CursorAdapter {
         Uri uri = MediaStore.Audio.Genres.getContentUriForAudioId("external", id);
         Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
         int index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Genres.NAME);
+        //startManagingCursor(cursor);
+        cursor.moveToFirst();
+        if (cursor.getCount() < 1)
+            return "none";
         do {
             result.add(cursor.getString(index));
         } while (cursor.moveToNext());
@@ -78,7 +82,7 @@ public class RecordAdapter extends CursorAdapter {
         String album = cursor.getString(cursor.getColumnIndexOrThrow(
                 MediaStore.Audio.Media.ALBUM
         ));
-        String genre =this.getGenresByMusicId(
+        String genre = this.getGenresByMusicId(
                 context,
                 cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
 

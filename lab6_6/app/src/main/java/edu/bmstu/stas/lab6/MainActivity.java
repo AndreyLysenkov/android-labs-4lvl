@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         RecordAdapter adapter = new RecordAdapter(this, cursor);
         view.setAdapter(adapter);
     }
-    
+
     public void onRefresh(View view) {
         this.fetchMusicData();
     }
