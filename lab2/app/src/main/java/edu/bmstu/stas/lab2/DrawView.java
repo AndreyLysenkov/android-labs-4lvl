@@ -27,33 +27,37 @@ class DrawView extends View {
         public int Y;
     }
 
-    private Position CalculatePosition() {
+    private Position calculatePosition(int width, int height) {
         Position result = new Position();
         DrawOption.ePosition position = this.option.Position;
 
+        int shiftX = 100;
+        int shiftY = 100;
+        int padding = 50;
+
         if (position == DrawOption.ePosition.CENTER) {
-            result.Y = 800;
-            result.X = 400;
+            result.X = width / 2 - shiftX;
+            result.Y = height / 2 - shiftY;
         }
 
         if (position == DrawOption.ePosition.TOP) {
-            result.Y = 0;
-            result.X = 400;
+            result.X = width / 2 - shiftX;
+            result.Y = padding;
         }
 
         if (position == DrawOption.ePosition.BOTTOM) {
-            result.Y = 1500;
-            result.X = 400;
+            result.X = width / 2 - shiftX;
+            result.Y = height - shiftY * 2 - padding;
         }
 
         if (position == DrawOption.ePosition.LEFT) {
-            result.Y = 800;
-            result.X = 0;
+            result.X = padding;
+            result.Y = height / 2 - shiftY;
         }
 
         if (position == DrawOption.ePosition.RIGHT) {
-            result.Y = 800;
-            result.X = 800;
+            result.X = width - shiftX * 2 - padding;
+            result.Y = height / 2 - shiftY;
         }
 
         Log.d("figure", "calculated position as X:" + Integer.toString(result.X) +
@@ -72,7 +76,7 @@ class DrawView extends View {
         if (this.option.Clear)
             return;
 
-        Position position = CalculatePosition();
+        Position position = calculatePosition(canvas.getWidth(), canvas.getHeight());
 
         Log.d("figure", "calculating figure and output it");
         switch (this.option.Figure) {
