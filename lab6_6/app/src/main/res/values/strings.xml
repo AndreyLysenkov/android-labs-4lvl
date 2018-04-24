@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">lab6</string>
+    <string name="record_line_1_placeholder">Never foget you run - shitty song (4:04)</string>
+    <string name="record_line_1_template">%artist% - %name% (%duration%)</string>
+    <string name="record_line_2_placeholder">songs you never miss (programmer, not, you)</string>
+    <string name="record_line_2_template">%album% (%genres%)</string>
+    <string name="record_artist_template">%artist%</string>
+    <string name="record_name_template">%name%</string>
+    <string name="record_duration_template">%duration%</string>
+    <string name="record_album_template">%album%</string>
+    <string name="record_genre_template">%genres%</string>
+    <string name="record_duration_format">HH:mm:ss</string>
 </resources>
