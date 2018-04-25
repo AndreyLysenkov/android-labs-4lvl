@@ -9,4 +9,6 @@
     <string name="people_phone_content_placeholder">84842277313</string>
     <string name="people_phone_label">телефон</string>
     <string name="activity_main_dummy">добавить dummy данных</string>
+    <string name="activity_main_dummy_label">добавить example данные</string>
+    <string name="output_nothing_found_label">ничего \nне нашлось</string>
 </resources>

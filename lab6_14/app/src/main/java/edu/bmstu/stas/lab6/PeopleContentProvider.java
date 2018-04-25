@@ -19,9 +19,9 @@ public class PeopleContentProvider extends ContentProvider {
     public static final int DATABASE_VERSION = 1;
     public static final String PEOPLE_TABLE_NAME = "people";
 
-    public static final String ID_FIELD = "id";
+    public static final String ID_FIELD = "_id";
     public static final String FIRST_NAME_FIELD = "first_name";
-    public static final String SECOND_NAME_FIELD = "first_name";
+    public static final String SECOND_NAME_FIELD = "second_name";
     public static final String PHONE_FIELD = "phone";
 
     public static final String CREATE_TABLE = "CREATE TABLE " + PEOPLE_TABLE_NAME + " (" +
@@ -32,17 +32,19 @@ public class PeopleContentProvider extends ContentProvider {
 
     public static final String AUTHORITY = "edu.bmstu.stas.provider.database";
 
-    public static final String URL = "content://" + AUTHORITY + "/people";
-    public static final Uri URI = Uri.parse(URL);
+    public static final int URI_DEFAULT = 1;
+    public static final int URI_PEOPLE = 2;
+    public static final int URI_ITEM = 3;
 
-    public static final int URI_PEOPLE = 1;
-    public static final int URI_ITEM = 2;
+    public static final String URL = "content://" + AUTHORITY + "/default";
+    public static final Uri URI = Uri.parse(URL);
 
     private static HashMap<String, String> PROJECTION_MAP;
 
     private static final UriMatcher uriMatcher;
     static {
         uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        uriMatcher.addURI(AUTHORITY, "default/", URI_DEFAULT);
         uriMatcher.addURI(AUTHORITY, "people/*", URI_PEOPLE);
         uriMatcher.addURI(AUTHORITY, "item/#", URI_ITEM);
     }

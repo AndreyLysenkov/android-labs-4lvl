@@ -54,4 +54,8 @@ public class MainActivity extends AppCompatActivity {
         insertItem("Аднрей", "Турченко", "89035446464");
         insertItem("Ростислав", "Турников", "89066554896");
     }
+
+    public void onDummy(View view) {
+        this.addDummy();
+    }
 }
