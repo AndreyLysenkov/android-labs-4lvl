@@ -15,5 +15,5 @@
     <string name="activity_main_position_bottom_center_label">-</string>
     <string name="activity_main_position_bottom_right_label">-</string>
     <string name="activity_main_position_label">выберите позицию</string>
-    <string name="activity_main_color_default">#88bbff</string>
+    <string name="activity_main_color_default">88bbff</string>
 </resources>

@@ -2,6 +2,7 @@ package edu.bmstu.stas.lab3;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
@@ -17,6 +18,7 @@ class DrawView extends View {
 
     public DrawView(Context context, DrawOption option) {
         super(context);
+
         this.paint = new Paint();
         this.paint.setColor(option.Color);
         this.option = option;
@@ -45,10 +47,11 @@ class DrawView extends View {
                 break;
             case RIGHT:
                 result.X = width - shiftX * 2 - padding;
+                break;
         }
 
         result.Y = 0;
-        switch (this.option.PositionX) {
+        switch (this.option.PositionY) {
             case TOP:
                 result.Y = padding;
                 break;
@@ -57,6 +60,7 @@ class DrawView extends View {
                 break;
             case BOTTOM:
                 result.Y = height - shiftY * 2 - padding;
+                break;
         }
 
         Log.d("figure", "calculated position as X:" + Integer.toString(result.X) +
@@ -66,29 +70,25 @@ class DrawView extends View {
 
     private void drawTriangle(Canvas canvas, Position position) {
         // https://stackoverflow.com/questions/20544668/how-to-draw-filled-triangle-on-android-canvas/22690364
-        canvas.drawPaint(this.paint);
 
-        Point p1 = new Point(position.X,position.Y);
-        Point p2 = new Point(position.X + 100, position.Y + 50);
-        Point p3 = new Point(position.X, position.Y + 100);
+        Point p1 = new Point(position.X, position.Y);
+        Point p2 = new Point(position.X + 200, position.Y + 100);
+        Point p3 = new Point(position.X, position.Y + 200);
 
         Path path = new Path();
         path.setFillType(Path.FillType.EVEN_ODD);
+        path.moveTo(p1.x, p1.y);
+        //path.lineTo(p1.x, p1.y);
         path.lineTo(p2.x, p2.y);
         path.lineTo(p3.x, p3.y);
-        path.lineTo(p1.x, p1.y);
         path.close();
 
         canvas.drawPath(path, paint);
 
         /* TODO;
-        paint.setStrokeWidth(4);
-        paint.setColor(android.graphics.Color.RED);
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setAntiAlias(true);*/
+        */
 
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {

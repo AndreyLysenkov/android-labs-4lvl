@@ -24,10 +24,9 @@ public class AboutActivity extends Activity {
         this.draw();
     }
 
-
     private void draw() {
-        this.view = new DrawView(this, this.option);
-        setContentView(this.view);
+        view = new DrawView(this, option);
+        setContentView(view);
     }
 
 
