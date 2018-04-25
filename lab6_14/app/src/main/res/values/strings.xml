@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">lab6</string>
+    <string name="activity_main_name_placeholder">турченко</string>
+    <string name="activity_main_apply_label">показать</string>
+</resources>

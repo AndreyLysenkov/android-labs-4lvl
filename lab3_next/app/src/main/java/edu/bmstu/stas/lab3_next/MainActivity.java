@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null)
             return;
-        
+
         TextView text = findViewById(R.id.activity_main_text);
 
         switch (requestCode) {
