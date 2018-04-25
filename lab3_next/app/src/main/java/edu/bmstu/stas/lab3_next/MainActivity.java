@@ -14,10 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Intent intent = getIntent();
-
-        int color = intent.getExtras().getInt("color");
-        //Log.d("color", color);*/
     }
 
     public void onColorPick(View view) {
@@ -39,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null)
+            return;
+        
         TextView text = findViewById(R.id.activity_main_text);
 
         switch (requestCode) {
