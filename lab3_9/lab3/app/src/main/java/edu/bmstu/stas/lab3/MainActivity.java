@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity {
         EditText colorEditText = (EditText) findViewById(R.id.activity_main_color);
         String colorText = colorEditText.getText().toString();
 
-        this.option.Color = Color.argb(
-                255,
-                Integer.parseInt(colorText.substring(0, 2), 16),
-                Integer.parseInt(colorText.substring(2, 4), 16),
-                Integer.parseInt(colorText.substring(4, 6), 16)
-        );
+        try {
+            this.option.Color = Color.parseColor(colorText);
+        }
+        catch (Exception e) {
+            return;
+        }
     }
 
     public void onClick(View view) {

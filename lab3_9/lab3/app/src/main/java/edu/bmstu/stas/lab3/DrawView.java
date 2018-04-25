@@ -84,10 +84,6 @@ class DrawView extends View {
         path.close();
 
         canvas.drawPath(path, paint);
-
-        /* TODO;
-        */
-
     }
 
     @Override

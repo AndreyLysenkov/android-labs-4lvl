@@ -23,12 +23,13 @@ public class ColorActivity extends AppCompatActivity {
         EditText colorEditText = (EditText) findViewById(R.id.activity_color_field);
         String colorText = colorEditText.getText().toString();
 
-        int color = Color.argb(
-                255,
-                Integer.parseInt(colorText.substring(0, 2), 16),
-                Integer.parseInt(colorText.substring(2, 4), 16),
-                Integer.parseInt(colorText.substring(4, 6), 16)
-        );
+        int color;
+
+        try {
+            color = Color.parseColor(colorText);
+        } catch (Exception e) {
+            color = Color.BLACK;
+        }
 
         Intent intent = getIntent();
         intent.putExtra("color", color);

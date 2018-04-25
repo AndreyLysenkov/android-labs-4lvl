@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">lab3_next</string>
-    <string name="activity_color_field_default">88bbff</string>
+    <string name="activity_color_field_default">#88bbff</string>
     <string name="activity_color_apply_label">set color</string>
     <string name="activity_figure_circle_label">круг</string>
     <string name="activity_figure_square_label">квадрат</string>
