@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.bmstu.stas.lab6">
-
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    package="edu.bmstu.stas.lab3_next">
 
     <application
         android:allowBackup="true"
@@ -18,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OutputActivity"/>
+        <activity android:name=".ColorActivity" />
+        <activity android:name=".TextActivity" />
+        <activity android:name=".SizeActivity"></activity>
     </application>
 
 </manifest>

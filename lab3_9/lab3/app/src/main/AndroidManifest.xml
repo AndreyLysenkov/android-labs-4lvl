@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.bmstu.stas.lab6">
-
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    package="edu.bmstu.stas.lab3">
 
     <application
         android:allowBackup="true"
@@ -18,7 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OutputActivity"/>
+        <activity android:name=".AboutActivity"
+            android:label="@string/activity_about_title">
+            <intent-filter>
+                <!-- thnx to
+                https://stackoverflow.com/questions/10921451/start-activity-using-custom-action
+                https://stackoverflow.com/questions/8583658/start-activity-with-action-but-no-category/8584432#8584432
+                -->
+                <action android:name="edu.bmstu.stas.lab3.VIEW_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
