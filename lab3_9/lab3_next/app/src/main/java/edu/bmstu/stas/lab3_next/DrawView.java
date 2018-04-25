@@ -2,31 +2,36 @@ package edu.bmstu.stas.lab3_next;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-class DrawView extends View {
+public class DrawView extends View {
 
     Paint paint;
     Canvas canvas;
     DrawOption option;
 
-
-    public DrawView(Context context, DrawOption option) {
-        super(context);
+    // https://stackoverflow.com/questions/12872848/android-view-inflateexception-binary-xml-file-line-when-using-custom-view
+    public DrawView(Context context, AttributeSet st) {
+        super(context, st);
 
         this.paint = new Paint();
-        this.paint.setColor(option.Color);
-        this.option = option;
+        this.option = new DrawOption();
+        this.applyColor();
     }
-
 
     class Position {
         public int X;
         public int Y;
+    }
+
+    private void applyColor() {
+        this.paint.setColor(option.Color);
     }
 
     private Position calculatePosition(int width, int height) {
@@ -120,8 +125,8 @@ class DrawView extends View {
     // https://stackoverflow.com/questions/25314707/how-to-combine-canvas-drawing-with-android-activity-layout-which-includes-button
     public void update(DrawOption option) {
         this.option = option;
+        this.applyColor();
         invalidate();
-
     }
 
 }
