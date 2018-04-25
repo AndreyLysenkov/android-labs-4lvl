@@ -28,9 +28,7 @@ public class PeopleContentProvider extends ContentProvider {
             ID_FIELD + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             FIRST_NAME_FIELD + " TEXT, " +
             SECOND_NAME_FIELD +" TEXT, " +
-            PHONE_FIELD + " INTEGER" +
-            // phone can be in integer: https://stackoverflow.com/questions/8672473/is-there-type-long-in-sqlite
-        ");";
+            PHONE_FIELD + " TEXT );";
 
     public static final String AUTHORITY = "edu.bmstu.stas.provider.database";
 

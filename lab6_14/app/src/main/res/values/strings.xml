@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">lab6</string>
-    <string name="activity_main_name_placeholder">турченко</string>
+    <string name="activity_main_name_placeholder">Турченко</string>
     <string name="activity_main_apply_label">показать</string>
+    <string name="people_first_name_content_placeholder">George</string>
+    <string name="people_second_name_content_placeholder">Orwell</string>
+    <string name="people_first_name_label">имя</string>
+    <string name="people_second_name_label">фамилия</string>
+    <string name="people_phone_content_placeholder">84842277313</string>
+    <string name="people_phone_label">телефон</string>
+    <string name="activity_main_dummy">добавить dummy данных</string>
 </resources>

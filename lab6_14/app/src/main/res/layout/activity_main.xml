@@ -29,9 +29,10 @@
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
-        android:text="@string/activity_main_apply_label"
         android:onClick="onApply"
+        android:text="@string/activity_main_apply_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
