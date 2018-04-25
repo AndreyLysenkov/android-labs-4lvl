@@ -14,49 +14,46 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="@string/activity_main_button_color_label"
-        android:onClick="onColorPick"
+        android:onClick="onColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/activity_main_button_size"
+        android:id="@+id/activity_main_button_figure"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/activity_main_button_size_label"
-        android:onClick="onSizeEdit"
+        android:text="@string/activity_main_button_figure_label"
+        android:onClick="onFigure"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_main_button_color" />
 
     <Button
-        android:id="@+id/activity_main_button_text"
+        android:id="@+id/activity_main_button_position"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/activity_main_button_text_label"
-        android:onClick="onTextEdit"
+        android:text="@string/activity_main_button_position_label"
+        android:onClick="onPosition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_button_size" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_button_figure" />
 
-    <TextView
-        android:id="@+id/activity_main_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
+    <!-- https://stackoverflow.com/questions/25314707/how-to-combine-canvas-drawing-with-android-activity-layout-which-includes-button -->
+    <edu.bmstu.stas.lab3_next.DrawView
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:text="@string/activity_main_text_field_label"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_button_text" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_button_position" />
+
 </android.support.constraint.ConstraintLayout>

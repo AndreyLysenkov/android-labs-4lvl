@@ -1,16 +1,21 @@
 <resources>
     <string name="app_name">lab3_next</string>
-    <string name="activity_main_color_black_name">черный</string>
-    <string name="activity_main_color_gray_name">серый</string>
-    <string name="activity_main_color_blue_name">синий</string>
-    <string name="activity_main_color_red_name">красный</string>
-    <string name="activity_main_color_green_name">зеленый</string>
-    <string name="activity_main_color_random_name">случайный</string>
+    <string name="activity_color_field_default">88bbff</string>
+    <string name="activity_color_apply_label">set color</string>
+    <string name="activity_figure_circle_label">круг</string>
+    <string name="activity_figure_square_label">квадрат</string>
+    <string name="activity_figure_triangle_label">треугольнимк</string>
+    <string name="activity_main_position_top_left_label">-</string>
+    <string name="activity_main_position_top_center_label">-</string>
+    <string name="activity_main_position_top_right_label">-</string>
+    <string name="activity_main_position_center_left_label">-</string>
+    <string name="activity_main_position_center_right_label">-</string>
+    <string name="activity_main_position_center_center_label">-</string>
+    <string name="activity_main_position_bottom_left_label">-</string>
+    <string name="activity_main_position_bottom_center_label">-</string>
+    <string name="activity_main_position_bottom_right_label">-</string>
+    <string name="activity_main_position_label">выберите позицию</string>
     <string name="activity_main_button_color_label">задать цвет</string>
-    <string name="activity_text_field_label">введите текст</string>
-    <string name="activity_text_button_label">отправить</string>
-    <string name="activity_main_text_field_label">пример текста</string>
-    <string name="activity_main_button_text_label">задать текст</string>
-    <string name="activity_size_button_apply_label">отправить</string>
-    <string name="activity_main_button_size_label">задать размер</string>
+    <string name="activity_main_button_figure_label">выбрать фигуру</string>
+    <string name="activity_main_button_position_label">задать позицию</string>
 </resources>

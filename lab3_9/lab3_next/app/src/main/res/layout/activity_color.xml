@@ -7,61 +7,33 @@
     tools:context=".ColorActivity">
 
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="fill_parent"
+    <EditText
+        android:id="@+id/activity_color_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/activity_color_field_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/activity_color_apply"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:text="@string/activity_color_apply_label"
+        android:onClick="onApply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/activity_main_color_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_black_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_gray_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_blue_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_red_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_green_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_random_name" />
-
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/activity_color_field" />
 
 </android.support.constraint.ConstraintLayout>

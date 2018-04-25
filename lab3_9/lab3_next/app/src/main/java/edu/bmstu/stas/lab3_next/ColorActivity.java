@@ -6,13 +6,12 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioButton;
 
 import java.util.Random;
 
 public class ColorActivity extends AppCompatActivity {
-
-    int color = Color.BLACK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,42 +19,16 @@ public class ColorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_color);
     }
 
-    private static int getRandomColor() {
-        // thnx https://stackoverflow.com/questions/5280367/android-generate-random-color-on-click
-        Random rnd = new Random();
-        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-    }
+    public void onApply(View view) {
+        EditText colorEditText = (EditText) findViewById(R.id.activity_color_field);
+        String colorText = colorEditText.getText().toString();
 
-    public void onColorChoose(View view) {
-        // thnx https://developer.android.com/guide/topics/ui/controls/radiobutton.html
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.activity_main_color_black:
-                if (checked)
-                    color = Color.BLACK;
-                break;
-            case R.id.activity_main_color_gray:
-                if (checked)
-                    color = Color.GRAY;
-                break;
-            case R.id.activity_main_color_blue:
-                if (checked)
-                    color = Color.BLUE;
-                break;
-            case R.id.activity_main_color_red:
-                if (checked)
-                    color = Color.RED;
-                break;
-            case R.id.activity_main_color_green:
-                if (checked)
-                    color = Color.GREEN;
-                break;
-            case R.id.activity_main_color_random:
-                if (checked)
-                    color = getRandomColor();
-                break;
-        }
+        int color = Color.argb(
+                255,
+                Integer.parseInt(colorText.substring(0, 2), 16),
+                Integer.parseInt(colorText.substring(2, 4), 16),
+                Integer.parseInt(colorText.substring(4, 6), 16)
+        );
 
         Intent intent = getIntent();
         intent.putExtra("color", color);
