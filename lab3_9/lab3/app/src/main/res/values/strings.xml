@@ -2,13 +2,18 @@
     <string name="app_name">lab3</string>
     <string name="activity_about_title">активити</string>
     <string name="activity_main_button_apply_label">apply</string>
-    <string name="activity_main_password_hint">пароль</string>
-    <string name="activity_main_color_black_name">черный</string>
-    <string name="activity_main_color_gray_name">серый</string>
-    <string name="activity_main_color_blue_name">голубой</string>
-    <string name="activity_main_color_red_name">красный</string>
-    <string name="activity_main_color_green_name">зеленый</string>
-    <string name="activity_main_color_random_name">случайный</string>
-    <string name="activity_main_textSize_hint">20</string>
-    <string name="activity_main_textContent_hint">напишите сам текст</string>
+    <string name="activity_main_figure_circle_label">круг</string>
+    <string name="activity_main_figure_square_label">квадрат</string>
+    <string name="activity_main_figure_triangle_label">тругольник</string>
+    <string name="activity_main_position_top_left_label">-</string>
+    <string name="activity_main_position_top_center_label">-</string>
+    <string name="activity_main_position_top_right_label">-</string>
+    <string name="activity_main_position_center_left_label">-</string>
+    <string name="activity_main_position_center_right_label">-</string>
+    <string name="activity_main_position_center_center_label">-</string>
+    <string name="activity_main_position_bottom_left_label">-</string>
+    <string name="activity_main_position_bottom_center_label">-</string>
+    <string name="activity_main_position_bottom_right_label">-</string>
+    <string name="activity_main_position_label">выберите позицию</string>
+    <string name="activity_main_color_default">#88bbff</string>
 </resources>

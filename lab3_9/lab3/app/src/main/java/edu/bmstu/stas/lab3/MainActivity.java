@@ -13,69 +13,85 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    int color = Color.BLACK;
+    DrawOption option;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.option = new DrawOption();
+    }
+
+    public void onPositionPick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.activity_main_position_top_left:
+                this.option.PositionX = DrawOption.ePosition.LEFT;
+                this.option.PositionY = DrawOption.ePosition.TOP;
+                break;
+            case R.id.activity_main_position_top_center:
+                this.option.PositionX = DrawOption.ePosition.CENTER;
+                this.option.PositionY = DrawOption.ePosition.TOP;
+                break;
+            case R.id.activity_main_position_top_right:
+                this.option.PositionX = DrawOption.ePosition.RIGHT;
+                this.option.PositionY = DrawOption.ePosition.TOP;
+                break;
+            case R.id.activity_main_position_center_left:
+                this.option.PositionX = DrawOption.ePosition.LEFT;
+                this.option.PositionY = DrawOption.ePosition.CENTER;
+                break;
+            case R.id.activity_main_position_center_center:
+                this.option.PositionX = DrawOption.ePosition.CENTER;
+                this.option.PositionY = DrawOption.ePosition.CENTER;
+                break;
+            case R.id.activity_main_position_center_right:
+                this.option.PositionX = DrawOption.ePosition.RIGHT;
+                this.option.PositionY = DrawOption.ePosition.CENTER;
+                break;
+            case R.id.activity_main_position_bottom_left:
+                this.option.PositionX = DrawOption.ePosition.LEFT;
+                this.option.PositionY = DrawOption.ePosition.BOTTOM;
+                break;
+            case R.id.activity_main_position_bottom_center:
+                this.option.PositionX = DrawOption.ePosition.CENTER;
+                this.option.PositionY = DrawOption.ePosition.BOTTOM;
+                break;
+            case R.id.activity_main_position_bottom_right:
+                this.option.PositionX = DrawOption.ePosition.RIGHT;
+                this.option.PositionY = DrawOption.ePosition.BOTTOM;
+                break;
+        }
+    }
+
+    public void parseColor() {
+        EditText colorEditText = (EditText) findViewById(R.id.activity_main_color);
+        String colorText = colorEditText.getText().toString();
+
+        this.option.Color = Integer.parseInt(colorText, 16);
     }
 
     public void onClick(View view) {
-        EditText textSizeEditText = (EditText) findViewById(R.id.activity_main_textSize_field);
-        int size = Integer.parseInt(textSizeEditText.getText().toString());
-
-        int color = this.color;
-
-        EditText textContentEditText = (EditText) findViewById(R.id.activity_main_textContent);
-        String text = textContentEditText.getText().toString();
-
-        //Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+        this.parseColor();
 
         Intent intent = new Intent();
         intent.setAction("edu.bmstu.stas.lab3.VIEW_TEXT");
-
-        intent.putExtra("color", color);
-        intent.putExtra("size", size);
-        intent.putExtra("text", text);
-
+        intent = this.option.addToIntent(intent);
         startActivity(intent);
     }
 
-    private static int getRandomColor() {
-        // thnx https://stackoverflow.com/questions/5280367/android-generate-random-color-on-click
-        Random rnd = new Random();
-        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-    }
-
-    public void onColorChoose(View view) {
-        // thnx https://developer.android.com/guide/topics/ui/controls/radiobutton.html
-        boolean checked = ((RadioButton) view).isChecked();
-
-        switch(view.getId()) {
-            case R.id.activity_main_color_black:
-                if (checked)
-                    color = Color.BLACK;
-                    break;
-            case R.id.activity_main_color_gray:
-                if (checked)
-                    color = Color.GRAY;
+    public void onFigurePick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.activity_main_figure_circle:
+                this.option.Figure = DrawOption.eFigure.CIRCLE;
                 break;
-            case R.id.activity_main_color_blue:
-                if (checked)
-                    color = Color.BLUE;
+            case R.id.activity_main_figure_square:
+                this.option.Figure = DrawOption.eFigure.SQUARE;
                 break;
-            case R.id.activity_main_color_red:
-                if (checked)
-                    color = Color.RED;
-                break;
-            case R.id.activity_main_color_green:
-                if (checked)
-                    color = Color.GREEN;
-                break;
-            case R.id.activity_main_color_random:
-                if (checked)
-                    color = getRandomColor();
+            case R.id.activity_main_figure_triangle:
+                this.option.Figure = DrawOption.eFigure.TRIANGLE;
                 break;
         }
     }

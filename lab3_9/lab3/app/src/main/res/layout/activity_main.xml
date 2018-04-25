@@ -6,91 +6,196 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/activity_main_textSize_field"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:text="@string/activity_main_textSize_hint"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_main_textSize_field">
-
-        <RadioButton
-            android:id="@+id/activity_main_color_black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_black_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_gray_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_blue_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_red_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_green_name" />
-
-        <RadioButton
-            android:id="@+id/activity_main_color_random"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onColorChoose"
-            android:text="@string/activity_main_color_random_name" />
-
-    </RadioGroup>
-
-    <EditText
-        android:id="@+id/activity_main_textContent"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:id="@+id/activity_main_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/activity_main_textContent_hint"
         app:layout_constraintBottom_toTopOf="@+id/activity_main_button_apply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/activity_main_scroll_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RadioGroup
+                android:id="@+id/activity_main_figure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/activity_main_position"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+                    android:id="@+id/activity_main_figure_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onFigurePick"
+                    android:text="@string/activity_main_figure_circle_label" />
+
+                <RadioButton
+                    android:id="@+id/activity_main_figure_square"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onFigurePick"
+                    android:text="@string/activity_main_figure_square_label" />
+
+                <RadioButton
+                    android:id="@+id/activity_main_figure_triangle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onFigurePick"
+                    android:text="@string/activity_main_figure_triangle_label" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/activity_main_position_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_main_position_label"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/activity_main_position_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
+
+                <Button
+                    android:id="@+id/activity_main_position_top_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_top_left_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_top_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_top_center_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_top_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_top_right_label"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_main_position_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp">
+
+                <Button
+                    android:id="@+id/activity_main_position_center_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_center_left_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_center_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_center_center_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_center_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_center_right_label"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/activity_main_position_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:layout_marginBottom="32dp">
+
+                <Button
+                    android:id="@+id/activity_main_position_bottom_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_bottom_left_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_bottom_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_bottom_center_label"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/activity_main_position_bottom_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="onPositionPick"
+                    android:text="@string/activity_main_position_bottom_right_label"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/activity_main_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginStart="32dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/activity_main_color_default"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/activity_main_button_apply"
@@ -102,6 +207,7 @@
         android:layout_weight="1"
         android:onClick="onClick"
         android:text="@string/activity_main_button_apply_label"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
